@@ -1,5 +1,5 @@
-# TRABALHO 01 : Título do trabalho
-Trabalho desenvolvido durante a disciplina de BD
+# TRABALHO 01 : Sistema de Controle de Caixa.
+Trabalho desenvolvido durante o 5º Periodo do curso de Sistemas de Informação no Instituto Federal do Espirito Santo.
 
     O referido projeto poderá ser:
         a) Um novo sistema/projeto 
@@ -19,7 +19,7 @@ Trabalho desenvolvido durante a disciplina de BD
 #Sumário
 
 ###1	COMPONENTES<br>
-Integrantes do grupo<br>
+Integrantes do grupo: André Barbosa da Vitória e Juliana Yuri Kanezaki de Souza<br>
 
 ###2	INTRODUÇÃO E MOTIVAÇAO<br>
 Este documento contém a especificação do projeto do banco de dados <nome do projeto> e motivação da escolha realizada. <br>
