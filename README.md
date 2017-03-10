@@ -37,8 +37,14 @@ descrição breve sobre o sistema
 ###4.2	Requisitos Não Funcionais
 | ID | Descrição | Prioridade | Categoria | Escopo |
 | --- | --- | --- | --- | --- |
-| RNF01 | A entrada de dados de efetuar locação pelo atendente deverá ser realizada em no máximo 30 segundos | Must | 2 | Facilidade de Operação | Funcionalidade |
-| RNF02 | O tempo de resposta de efetuar locação dever ser de no máximo 2 segundos a partir da entrada correta de dados | Should | 3 | Eficincia de Tempo | Funcionalidade |
+| RNF01 | Deve ser possível utilizar o sistema mesmo sem conexão com a internet | Must | 2 | Acessibilidade | Funcionalidade |
+| RNF02 |A entrada de dados para efetuar o cadastro de um produto deverá ser realizada em no máximo 30 segundos | Should | 3 | Facilidade de Operação | Funcionalidade |
+| RNF03 |O tempo de resposta de cadastro deve ser de no máximo de 3 segundos | Should | 3 | Eficiência de Tempo | Funcionalidade |
+| RNF04 | O sistema deve registrar o nome do vendedor em cada venda | Must| 3 | Não Repúdio| Funcionalidade |
+| RNF05 | O sistema deve apresentar o valor total da venda em no máximo 0,5 segundos | Should | 3 | Eficincia de Tempo | Funcionalidade |
+| RNF06 | O sistema deve ser capaz de armazenar o histórico dos preços dos produtos | Must | 3 | Não Repúdio| Funcionalidade |
+| RNF07 |O sistema deve ser capaz de operar em múltiplas plataformas (Android, Windows) | Should | 3 | Adaptabilidade | Funcionalidade |
+| RNF08 | O acesso ao sistema deverá somente ser permitido a usuários cadastrados | Must | 3 | Integridade / Confidencialidade | Funcionalidade |
 
 ###4.3	Regras de Negócio
 | ID | Descrição | Prioridade | 
