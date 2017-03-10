@@ -1,66 +1,125 @@
-# TRABALHO 01 : Sistema de Controle de Caixa.
-Trabalho desenvolvido durante o 5º Periodo do curso de Sistemas de Informação no Instituto Federal do Espirito Santo.
+# TRABALHO INTEGRADO: Título do trabalho
 
-    O referido projeto poderá ser:
-        a) Um novo sistema/projeto 
-        b) Uma expansão de sistema/projeto previamente desenvolvido em disciplinas anteriores 
-        (ex: Expansão dos módulos do sistema desenvolvidos em BD1 - incremento mínimo de 50% nos 
-        requisitos/complexidade)
-    
-    OBS Importantes: 
-        a) Os projetos/sistemas propostos serão validados pelo professor e pela turma
-        b) Se possível é interessante que os novos sistemas estejam correlacionados com alguma área 
-        previamente estudada pelo aluno
-        c) Caso dependa de alguma instituição/parceiro externo, a base de dados e informações pertinentes 
-        a esta devem ser obtidas no prazo de até 15 dias apos aprovação da proposta do trabalho 
-        (caso contrário, nova proposta deverá ser apresentada a turma implicando logicamente em um prazo 
-        mais curto para realização das atividades e conclusão do trabalho)
+Trabalho desenvolvido durante as disciplinas de:
+- Banco de Dados 2, 
+- Engenharia de Software, 
+- Programação Orientada a Objetos 2,
+- Projeto de Sistemas
+
+
+**INTEGRANTES DO GRUPO:** 
+- André Barbosa da Vitoria<br>
+- Juliana Yuri Kanezaki de Souza<br>
+
         
 #Sumário
 
-###1	COMPONENTES<br>
-Integrantes do grupo: André Barbosa da Vitória e Juliana Yuri Kanezaki de Souza<br>
 
-###2	INTRODUÇÃO E MOTIVAÇAO<br>
-Este documento contém a especificação do projeto do banco de dados <nome do projeto> e motivação da escolha realizada. <br>
-      
-###3	MINI-MUNDO<br>
-Descrever o mini-mundo. Não deve ser maior do que 30 linhas <br>
+#Gerência de Requisitos
 
-###3.1	HISTÓRIAS DE USUÁRIO<br>
-  Descreva aqui os requisitos do sistema em formato de histórias de usuário
+##1	Motivação e Propósito do Sistema 
+escrever os motivos, necessidades e benefícios do projeto.
 
-Product Backlog
+##2	Personas
+descrever os personas de tal forma que descreva as necessidades do usuário pelo sistema.
+
+##3	Minimundo 
+descrição breve sobre o sistema 
+
+##4	Requisitos de Usuários
+###4.1	Requisitos Funcionais (Histórias de Usuário)
 
 | ID | Descrição | Prioridade | Pontos |
 | --- | --- | --- | --- |
-| 001 | COMO/SENDO <QUEM>, EU QUERO/GOSTARIA/DEVO/POSSO <O QUE>, PARA QUE/DE/PARA <PORQUE/RESULTADO>. | 100 | 2 |
-| 002 | COMO um usuário não administrativo DEVO modificar meus próprios horários, mas não os horários de outros usuários PARA QUE não seja necessário abrir um chamado sempre que minhas atividades mudarem. | 99 | 3 |
+| RF01 | EU, COMO  **QUEM**, QUERO/GOSTARIA/DEVO/POSSO **O QUE**, PARA QUE/DE/PARA **PORQUE/RESULTADO**. | Must | 2 |
+| RF02 | EU, COMO cliente, POSSO acessar o acerto da locadora PARA QUE consiga ver os filmes disponíveis antes de sair de casa. | Should | 3 |
 
-###4.1	RASCUNHOS E TECNOLOGIA<BR>
- 
-####4.1	RASCUNHOS BÁSICOS DA INTERFACE (MOCKUPS)<br>
-neste ponto a codificação não e necessária, somente as ideias de telas devem ser criadas, o princípio aqui é pensar na criação da interface para identificar possíveis informações a serem armazenadas ou descartadas <br>
+###4.2	Requisitos Não Funcionais
+| ID | Descrição | Prioridade | Categoria | Escopo |
+| --- | --- | --- | --- | --- |
+| RNF01 | A entrada de dados de efetuar locação pelo atendente deverá ser realizada em no máximo 30 segundos | Must | 2 | Facilidade de Operação | Funcionalidade |
+| RNF02 | O tempo de resposta de efetuar locação dever ser de no máximo 2 segundos a partir da entrada correta de dados | Should | 3 | Eficincia de Tempo | Funcionalidade |
+
+###4.3	Regras de Negócio
+| ID | Descrição | Prioridade | 
+| --- | --- | --- |
+| RN01 | Uma reserva expira quando passadas mais do que 24h de sua comunicação para o cliente. | Must |
+| RN02 | Clientes em atraso não podem efetuar nem locações nem reservas. | Should |
+
+
+#Desenvolvimento do Sistema
+##1.    Análise de Sistemas:
+###1.1  Subsistemas
+inserir diagrama dos subsistemas UML
+###1.2  Modelagem de Casos de uso 
+inserir diagramas dos Casos de Uso (UML) e descrever brevemente.
+
+###1.3  Modelagem Estrutural (Modelo Conceitual)
+** ATENÇO: USAR Notação Entidade-Relacionamentos se estiver fazendo BD2 e o diagrama de classes se estiver fazendo Projeto de Sistemas**
+![Alt text](https://github.com/discipbd2/topicos-trabalho/blob/master/sample_MC.png?raw=true "Modelo Conceitual")
+###1.4  Modelagem Comportamental
+inserir principais diagramas comportamentais da análise (principalmente, estados)
+###1.5  Dicionário de Dados
+[classe/entidade]: [descrição da classe]
+    
+    EXEMPLO:
+    CLIENTE: classe/entidade que representa as informações relativas ao cliente<br>
+    CPF: atributo que representa o número de Cadastro de Pessoa Física para cada cliente da empresa.<br>
+    
+##2.    Projeto de Sistemas:
+###2.1  Projeto Arquitetural 
+####2.1.1   Plataforma de Implementação e Tecnologias
+descrever tecnologias usadas no sistema, justificando cada uma delas com base no contexto
+
+####2.1.2   Atributos de Qualidade e Táticas
+ CATEGORIAS | RNF'S | TÁTICAS | 
+| --- | --- | --- |
+| Facilidade de Operação | RNF03, RNF08| Prover ao usuário a capacidade de entrar com comandos que permitam operar o sistema de modo mais eficiente. Para tal, as interfaces do sistema devem permitir, sempre que possível, a entrada por meio de seleção ou leitura de código de barras ao invés da digitação de campos. | 
+
+
+####2.1.3   Arquitetura de Software
+apresentar diagrama UML da arquitetura do sistema. justificar as decisões tomadas.
+
+###2.2. Projeto Detalhado
+OBS: repetir as seções abaixo para cada subsistema
+####2.2.1.   Projeto da Lógica de Negócio
+#####Projeto do Domínio
+apresentar diagrama de classes do domínio
+#####Projeto da Aplicação
+apresentar diagramas de sequência e mapeamento dos casos de uso para classes
+####2.2.2.  Projeto da Interface com Usuário
+#####Projeto da Visão
+apresentar protótipos de telas e diagramas de classes UML (caso realizado)
+OBS: Essa visão não tem nada a ver com Views de Banco de Dados
+
+__OBS DE BD2__: neste ponto a codificação não e necessária, somente as ideias de telas devem ser criadas, o princípio aqui é pensar na criação da interface para identificar possíveis informações a serem armazenadas ou descartadas <br>
 
 Sugestão: https://balsamiq.com/products/mockups/<br>
 
 ![Alt text](https://github.com/discipbd2/topicos-trabalho/blob/master/balsamiq.png?raw=true "Title")
+#####Projeto da Interação Humana
+apresentar diagrama de classes da IU com controladores e diagrama de sequências. Apresentar diagrama com estados de navegação.
+####2.2.3.  Projeto da Persistência de Dados
+apresentar classes de acesso ao banco de dados. apresentar diagramas de sequência.
+
+####2.4.   Padrões
+#####Padrões Arquiteturais
+#####Padrões de Projeto
+
+No diagrama abaixo é destacado o padrão de projeto método fábrica que foi utilizado para melhorar a coesão e diminiuir o acoplamento entre as clases do sistema. O pode-se notar a classe FabricaDeFormatos cria os objetos FormatoPng, FormatoJpeg e FormatoGif tirando a dependencia entre a classes Main e essas classes. Vale ressaltar que o padrão utiliza um Interface Formato para diminiuir o acoplamento entre as classes.
+
+![Alt text](https://github.com/felipefo/poo2/blob/master/Padroes_de_Projeto/Cria%C3%A7%C3%A3o/metodo_fabrica/ImagemMetodoFabrica/padrao_metodo_fabrica_conversao_imagem.png)
 
 
-####4.2	Descrição da Tecnologia utilizada<br>
+O padrão foi utilizado para resolver o problema de .....
 
- Para o desenvolvimento do projeto foram utilizadas as seguintes ferramentas e frameworks.....
+O padrão foi utilizado para resolver o problema de .....
 
 
-###5	MODELO CONCEITUAL<br>
-####5.1 NOTACAO ENTIDADE RELACIONAMENTO
-![Alt text](https://github.com/discipbd2/topicos-trabalho/blob/master/sample_MC.png?raw=true "Modelo Conceitual")
-    
-    5.2 NOTACAO UML (Caso esteja fazendo a disciplina de Projeto)
-    aquicionar aqui um exemplo de diagrama de classe.
-    
+##3.    Banco de Dados (BD)
 
-####5.3 DECISÕES DE PROJETO
+
+###3.1 Decisões do Projeto 
     [atributo]: [descrição da decisão]
     
     EXEMPLO:
@@ -68,62 +127,46 @@ Sugestão: https://balsamiq.com/products/mockups/<br>
     pode possuir para cada departamento mais de uma localização... 
     b) justifique!
 
-#####5.2 PADRÔES DE PROJETO UTILIZADOS NO TRABALHO 
 
-###### 5.1.1 No diagrama abaixo é destacado o padrão de projeto método fábrica que foi utilizado para melhorar a coesão e diminiuir o acoplamento entre as clases do sistema. O pode-se notar a classe FabricaDeFormatos cria os objetos FormatoPng, FormatoJpeg e FormatoGif tirando a dependencia entre a classes Main e essas classes. Vale ressaltar que o padrão utiliza um Interface Formato para diminiuir o acoplamento entre as classes.
-
-![Alt text](https://github.com/felipefo/poo2/blob/master/Padroes_de_Projeto/Cria%C3%A7%C3%A3o/metodo_fabrica/ImagemMetodoFabrica/padrao_metodo_fabrica_conversao_imagem.png)
-
-###### 5.1.2 O padrão foi utilizado para resolver o problema de .....
-
-###### 5.1.3 O padrão foi utilizado para resolver o problema de .....
-
-####5.3 DESCRIÇÃO DOS DADOS 
-    [objeto]: [descrição do objeto]
-    
-    EXEMPLO:
-    CLIENTE: Tabela que armazena as informações relativas ao cliente<br>
-    CPF: campo que armazena o número de Cadastro de Pessoa Física para cada cliente da empresa.<br>
-
-###6	MODELO LÓGICO<br>
-###7	MODELO FÍSICO<br>
-###8	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
-####8.1 DETALHAMENTO DAS INFORMAÇÕES
+###3.2	Modelo Lógico<br>
+###3.3	MODELO FÍSICO<br>
+###3.4	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
+####3.4.1 DETALHAMENTO DAS INFORMAÇÕES
         Detalhamento sobre as informações e processo de obtenção ou geração dos dados.
         Referenciar todas as fontes referentes a:
         a) obtenção dos dados
         b) obtenção de códigos reutilizados
         c) fontes de estudo para desenvolvimento do projeto
         
-####8.2 INCLUSÃO DO SCRIPT PARA CRIAÇÃO DE TABELAS E INSERÇÃO DOS DADOS (ARQUIVO ÚNICO COM):
+####3.4.2 INCLUSÃO DO SCRIPT PARA CRIAÇÃO DE TABELAS E INSERÇÃO DOS DADOS (ARQUIVO ÚNICO COM):
         a) inclusão das instruções para criação das tabelas e estruturas de amazenamento do BD
         b) inclusão das instruções de inserção dos dados nas referidas tabelas
         c) inclusão das instruções para execução de outros procedimentos necessários
 
-###9	TABELAS E PRINCIPAIS CONSULTAS<br>
-####9.1	GERACAO DE DADOS (MÍNIMO DE 1,5 MILHÃO DE REGISTROS PARA PRINCIPAL RELAÇAO)<br>
+###3.5	TABELAS E PRINCIPAIS CONSULTAS<br>
+####3.5.1	GERACAO DE DADOS (MÍNIMO DE 1,5 MILHÃO DE REGISTROS PARA PRINCIPAL RELAÇAO)<br>
     Data de Entrega: (Data a ser definida)
 <br>
 OBS: Incluir para os tópicos 9.2 e 9.3 as instruções SQL + imagens (print da tela) mostrando os resultados.<br>
 
-####9.2	SELECT DAS TABELAS COM PRIMEIROS 10 REGISTROS INSERIDOS<br> 
+####3.5.2	SELECT DAS TABELAS COM PRIMEIROS 10 REGISTROS INSERIDOS<br> 
     Data de Entrega: (Data a ser definida)
 <br>
-####9.3	SELECT DAS VISÕES COM PRIMEIROS 10 REGISTROS DA VIEW<br>
+####3.5.3	SELECT DAS VISÕES COM PRIMEIROS 10 REGISTROS DA VIEW<br>
         a) Descrição da view sobre que grupos de usuários (operacional/estratégico) <br>
         e necessidade ela contempla.
         b) Descrição das permissões de acesso e usuários correlacionados (após definição <br>
         destas características)
     Data de Entrega: (Data a ser definida)
 <br>
-####9.4	LISTA DE CODIGOS DAS FUNÇÕES, ASSERÇOES E TRIGGERS<br>
+####3.5.4	LISTA DE CODIGOS DAS FUNÇÕES, ASSERÇOES E TRIGGERS<br>
         Detalhamento sobre funcionalidade de cada código.
         a) Objetivo
         b) Código do objeto (função/trigger/asserção)
         c) exemplo de dados para aplicação
         d) resultados em forma de tabela/imagem
 <br>
-####9.5	Administração do banco de dados<br>
+####3.5.5	Administração do banco de dados<br>
         Descrição detalhada sobre como serão executadas no banco de dados as <br>
         seguintes atividades.
         a) Segurança e autorização de acesso:
@@ -131,7 +174,7 @@ OBS: Incluir para os tópicos 9.2 e 9.3 as instruções SQL + imagens (print da 
         c) Planejamento de rotinas de manutenção e monitoramento do banco
         d) Plano com frequencia de análises visando otimização de performance
 <br>
-####9.6	Backup do Banco de Dados<br>
+####3.5.6	Backup do Banco de Dados<br>
         Detalhamento do backup.
         a) Tempo
         b) Tamanho
@@ -140,23 +183,71 @@ OBS: Incluir para os tópicos 9.2 e 9.3 as instruções SQL + imagens (print da 
         e) Teste de restauração (script sql)
         f) Tempo para restauração (script sql)
 <br>
-Data de Entrega: (Data a ser definida)
-<br>
-####9.7	APLICAÇAO DE ÍNDICES E TESTES DE PERFORMANCE<br>
+
+####3.5.7	APLICAÇAO DE ÍNDICES E TESTES DE PERFORMANCE<br>
     a) Lista de índices, tipos de índices com explicação de porque foram implementados
     b) Performance esperada VS Resultados obtidos
     c) Tabela de resultados comparando velocidades antes e depois da aplicação dos índices.
 <br>
     Data de Entrega: (Data a ser definida)
 <br>   
-####9.8	ANÁLISE DOS DADOS COM ORANGE<br>    
+####3.5.8	ANÁLISE DOS DADOS COM ORANGE<br>    
     a) aplicação de algoritmos e interpretação dos resultados
 <br>
     Data de Entrega: (Data a ser definida)
 <br>
-###10	ATUALIZAÇÃO DA DOCUMENTAÇÃO/ SLIDES E ENTREGA FINAL<br>
+###3.6	ATUALIZAÇÃO DA DOCUMENTAÇÃO/ SLIDES E ENTREGA FINAL<br>
 <br>
     Data de Entrega: (Data a ser definida)
 <br>
-###11	DIFICULDADES ENCONTRADAS PELO GRUPO<br>  
-###12  FORMATACAO NO GIT: https://help.github.com/articles/basic-writing-and-formatting-syntax/
+###3.7	DIFICULDADES ENCONTRADAS PELO GRUPO<br>  
+
+
+
+
+#Gestão de Configuração
+##1.    Metodologia
+descrever metodologias e políticas que serão usadas para realizar a gestão de configuração como, por exemplo, Gitflow, rastreabilidade de requisitos e mudanças. É necessário descrever em detalhes os procedimentos.
+##2.    Arquitetura
+descrever ferramentas e a integração dessas para a arquitetura. 
+##3.    Integração Contínua e Delivery Contínua
+Descrever como será aplicado esses conceitos.
+
+#Gestão de Projetos
+##1.    Project Model Canvas (PMC)
+Visão geral do projeto.
+##2.    Cronograma macro de sprints 
+datas dos sprints.
+##3.    Backlog de histórias de Usuário 
+lista de histórias de usuário categorizadas, priorizadas e com o esforço. A categorização deve utilizar a técnica MoSCoW. 
+Acompanhamento do projeto: o grupo deve apresentar histórico, por sprint,  do acompanhamento do projeto da seguinte forma:
+- Apresentando o Burndown do projeto.
+- Apresentando a velocidade do time.
+- Modificações do backlog.
+##4.    Burn down dos sprints
+acompanhamento dos sprints. Cada Sprint deve ter uma seção descrevendo o que foi realizado e o planejado (por meio do  o gráfico e Burndown do Sprint).
+##5.    Retrospectiva 
+Apresentar a retrospectiva da equipe do sprint realizado.
+
+#Gerência de Qualidade
+##1.    Métricas de qualidade 
+definir métricas de qualidade para cada artefato do projeto como, por exemplo, quantidade de codesmell, complexidade ciclomática e outras. 
+##2.    Classes de equivalência e particionamento de equivalência 
+defina as classes de equivalências para as métricas de qualidade. 
+
+##3.    Medição 
+seção que escreve como as métricas estão sendo atingidas. Essa seção deve ser atualizada por sprint. 
+##4.    Testes
+Técnicas utilizadas para os testes: apresentar as técnicas utilizadas para o planejamento e execução de testes como, por exemplo, teste funcional sistemático e testes estruturais. 
+##5.    Cenário de Teste
+apresentar todos os cenários de teste sucesso e falhas das histórias de usuário.  
+##6.    Histórico  
+O grupo deve apresentar a evolução da qualidade dos itens ao longo das entregas, ou seja, em outras palavras, o grupo deve apresentar o histórico de evolução da qualidade dos artefatos de software e discursar o motivo da evolução.
+
+#Diário de Bordo
+
+o grupo deve apresentar semanalmente um relato da atividade do grupo. O relato pode conter qualquer tipo de informação (fotos, vídeos) que possam auxiliar no entendimento das atividades do grupo. 
+
+OBS: organize o diário para que não se misture com a documentação. de preferência, coloque-o em outra página.
+
+**FORMATACAO NO GIT:** https://help.github.com/articles/basic-writing-and-formatting-syntax/
