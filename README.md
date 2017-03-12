@@ -77,10 +77,10 @@ inserir principais diagramas comportamentais da análise (principalmente, estado
 ##2.    Projeto de Sistemas:
 ###2.1  Projeto Arquitetural 
 ####2.1.1   Plataforma de Implementação e Tecnologias
-O sistema em questão trata-se de um Sistema de Informação e apresenta as seguintes características:
-Há apenas um computador desktop para a escola inteira, portanto o sistema deve estar disponível também em plataforma mobile;
-O sistema envolve um grande fluxo de dados e a sua gerência deve ser feita usando um banco de dados;
-Está integrado com outros sistemas em um mesmo banco de dados;
+O sistema em questão trata-se de um Sistema de Informação e apresenta as seguintes características: <br>
+- Há apenas um computador desktop para a escola inteira, portanto o sistema deve estar disponível também em plataforma mobile;
+- O sistema envolve um grande fluxo de dados e a sua gerência deve ser feita usando um banco de dados;
+- Está integrado com outros sistemas em um mesmo banco de dados; <br><br>
 Levando-se em consideração essas características, decidiu-se implementar o sistema para a Cantina da escola usando as linguagens de programação PHP e NodeJS e linguagens de desenvolvimento web (HTML5, JavaScript e CSS3), o banco de dados relacional PostgreSQL e o framework de desenvolvimento para múltiplas plataformas Ionic .
 
 ####2.1.2   Atributos de Qualidade e Táticas
