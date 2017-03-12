@@ -24,7 +24,8 @@ A Moulin Surf School é uma escola de surf que possui uma cantina, atualmente n�
 descrever os personas de tal forma que descreva as necessidades do usuário pelo sistema.
 
 ##3	Minimundo 
-descrição breve sobre o sistema 
+A Moulin surf school deseja uma sistema de informação para gerenciar a cantina da escola. 
+O sistema deve permitir que o vendedor cadastre, visualize, altere e remova os produtos do banco de dados. Os produtos vendidos são divididos em categorias como: bebidas, lanches e gelados. Sobre os produtos deseja-se saber: preço de custo, preço de venda, fornecedor e categoria. Cada alimento tem seu próprio preço. A escola deseja registrar o fluxo de caixa da cantina. Sobre a venda deseja-se saber: vendedor, produtos, preço total, data e horário.  O sistema deve apresentar relatório de venda de produtos com valor, descrição dos produtos, data e nome do vendedor. 
 
 ##4	Requisitos de Usuários
 ###4.1	Requisitos Funcionais (Histórias de Usuário)
