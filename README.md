@@ -39,14 +39,14 @@ descrição breve sobre o sistema
 ###4.2	Requisitos Não Funcionais
 | ID | Descrição | Prioridade | Categoria | Escopo |
 | --- | --- | --- | --- | --- |
-| RNF01 | Deve ser possível utilizar o sistema mesmo sem conexão com a internet | Must | 2 | Acessibilidade | Funcionalidade |
-| RNF02 |A entrada de dados para efetuar o cadastro de um produto deverá ser realizada em no máximo 30 segundos | Should | 3 | Facilidade de Operação | Funcionalidade |
-| RNF03 |O tempo de resposta de cadastro deve ser de no máximo de 3 segundos | Should | 3 | Eficiência de Tempo | Funcionalidade |
-| RNF04 | O sistema deve registrar o nome do vendedor em cada venda | Must| 3 | Não Repúdio| Funcionalidade |
-| RNF05 | O sistema deve apresentar o valor total da venda em no máximo 0,5 segundos | Should | 3 | Eficincia de Tempo | Funcionalidade |
-| RNF06 | O sistema deve ser capaz de armazenar o histórico dos preços dos produtos | Must | 3 | Não Repúdio| Funcionalidade |
-| RNF07 |O sistema deve ser capaz de operar em múltiplas plataformas (Android, Windows) | Should | 3 | Adaptabilidade | Funcionalidade |
-| RNF08 | O acesso ao sistema deverá somente ser permitido a usuários cadastrados | Must | 3 | Integridade / Confidencialidade | Funcionalidade |
+| RNF01 | Deve ser possível utilizar o sistema mesmo sem conexão com a internet | Must |  Acessibilidade | Funcionalidade |
+| RNF02 |A entrada de dados para efetuar o cadastro de um produto deverá ser realizada em no máximo 30 segundos | Should | Facilidade de Operação | Funcionalidade |
+| RNF03 |O tempo de resposta de cadastro deve ser de no máximo de 3 segundos | Should | Eficiência de Tempo | Funcionalidade |
+| RNF04 | O sistema deve registrar o nome do vendedor em cada venda | Must| Não Repúdio| Funcionalidade |
+| RNF05 | O sistema deve apresentar o valor total da venda em no máximo 0,5 segundos | Should | Eficincia de Tempo | Funcionalidade |
+| RNF06 | O sistema deve ser capaz de armazenar o histórico dos preços dos produtos | Must | Não Repúdio| Funcionalidade |
+| RNF07 |O sistema deve ser capaz de operar em múltiplas plataformas (Android, Windows) | Should | Adaptabilidade | Funcionalidade |
+| RNF08 | O sistema deve controlar o acesso às funcionalidades. Funcionalidades de atendimento a clientes devem ser restritas a vendedores. Funcionalidades de controle de caixa devem ser restritas a administradores.  | Must | Segurança de Acesso | Sistema|
 
 ###4.3	Regras de Negócio
 | ID | Descrição | Prioridade | 
@@ -86,7 +86,10 @@ Levando-se em consideração essas características, decidiu-se implementar o si
 ####2.1.2   Atributos de Qualidade e Táticas
  CATEGORIAS | RNF'S | TÁTICAS | 
 | --- | --- | --- |
-| Facilidade de Operação | RNF03, RNF08| Prover ao usuário a capacidade de entrar com comandos que permitam operar o sistema de modo mais eficiente. Para tal, as interfaces do sistema devem permitir, sempre que possível, a entrada por meio de seleção ou leitura de código de barras ao invés da digitação de campos. | 
+| Facilidade de Operação | RNF02| Prover ao usuário a capacidade de entrar com comandos que permitam operar o sistema de modo mais eficiente. Para tal, as interfaces do sistema devem permitir, sempre que possível, a entrada por meio de seleção ao invés da digitação de campos. | 
+| Não Repúdio | RNF04 | O sistema gerará logs de evento, portanto sempre que um vendedor realizar uma venda será gerado um log armazenando o autor do evento.| 
+| Facilidade de Operação | RNF03, RNF08| Identificar usuários usando login e autenticá-los por meio de senha.
+Autorizar usuários, criando os seguintes grupos: (i) Vendedor – acesso às funcionalidades do controle de vendas e CRUD (Criar, Ler, Atualizar, Deletar) de produtos; (ii) Administrador – Todas as funcionalidades do Vendedor e visualização de estatísticas de vendas. | 
 
 
 ####2.1.3   Arquitetura de Software
