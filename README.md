@@ -18,7 +18,7 @@ Trabalho desenvolvido durante as disciplinas de:
 #Gerência de Requisitos
 
 ##1	Motivação e Propósito do Sistema 
-escrever os motivos, necessidades e benefícios do projeto.
+A Moulin Surf School é uma escola de surf que possui uma cantina, atualmente não existe um controle automatizado do fluxo de caixa, provocando lacunas nas informações de entrada de caixa. O cliente deseja um sistema que auxilie no controle do fluxo de caixa e que fornece estatísticas das vendas efetuadas.
 
 ##2	Personas
 descrever os personas de tal forma que descreva as necessidades do usuário pelo sistema.
@@ -31,8 +31,10 @@ descrição breve sobre o sistema
 
 | ID | Descrição | Prioridade | Pontos |
 | --- | --- | --- | --- |
-| RF01 | EU, COMO  **QUEM**, QUERO/GOSTARIA/DEVO/POSSO **O QUE**, PARA QUE/DE/PARA **PORQUE/RESULTADO**. | Must | 2 |
-| RF02 | EU, COMO cliente, POSSO acessar o acerto da locadora PARA QUE consiga ver os filmes disponíveis antes de sair de casa. | Should | 3 |
+| RF01 | Eu, como vendedor, quero fazer o controle de vendas pelo celular para que eu tenha maior mobilidade.  | Should | 2 |
+| RF02 | Eu, como administrador, desejo saber o fluxo de caixa de determinado período | Must | 3 |
+| RF04 | Eu, como administrador, desejo ter acesso à relatórios sobre produtos mais vendidos | Must |  |
+| RF03 | Eu, como vendedor, desejo um sistema que calcule o preço total da venda e o troco do cliente para maior agilidade na venda. | Must |  |
 
 ###4.2	Requisitos Não Funcionais
 | ID | Descrição | Prioridade | Categoria | Escopo |
@@ -75,7 +77,11 @@ inserir principais diagramas comportamentais da análise (principalmente, estado
 ##2.    Projeto de Sistemas:
 ###2.1  Projeto Arquitetural 
 ####2.1.1   Plataforma de Implementação e Tecnologias
-descrever tecnologias usadas no sistema, justificando cada uma delas com base no contexto
+O sistema em questão trata-se de um Sistema de Informação e apresenta as seguintes características:
+Há apenas um computador desktop para a escola inteira, portanto o sistema deve estar disponível também em plataforma mobile;
+O sistema envolve um grande fluxo de dados e a sua gerência deve ser feita usando um banco de dados;
+Está integrado com outros sistemas em um mesmo banco de dados;
+Levando-se em consideração essas características, decidiu-se implementar o sistema para a Cantina da escola usando as linguagens de programação PHP e NodeJS e linguagens de desenvolvimento web (HTML5, JavaScript e CSS3), o banco de dados relacional PostgreSQL e o framework de desenvolvimento para múltiplas plataformas Ionic .
 
 ####2.1.2   Atributos de Qualidade e Táticas
  CATEGORIAS | RNF'S | TÁTICAS | 
