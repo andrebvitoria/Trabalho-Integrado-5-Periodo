@@ -88,8 +88,7 @@ Levando-se em consideração essas características, decidiu-se implementar o si
 | --- | --- | --- |
 | Facilidade de Operação | RNF02| Prover ao usuário a capacidade de entrar com comandos que permitam operar o sistema de modo mais eficiente. Para tal, as interfaces do sistema devem permitir, sempre que possível, a entrada por meio de seleção ao invés da digitação de campos. | 
 | Não Repúdio | RNF04 | O sistema gerará logs de evento, portanto sempre que um vendedor realizar uma venda será gerado um log armazenando o autor do evento.| 
-| Facilidade de Operação | RNF03, RNF08| Identificar usuários usando login e autenticá-los por meio de senha.
-Autorizar usuários, criando os seguintes grupos: (i) Vendedor – acesso às funcionalidades do controle de vendas e CRUD (Criar, Ler, Atualizar, Deletar) de produtos; (ii) Administrador – Todas as funcionalidades do Vendedor e visualização de estatísticas de vendas. | 
+| Facilidade de Operação | RNF03, RNF08| Identificar usuários usando login e autenticá-los por meio de senha.<br>Autorizar usuários, criando os seguintes grupos: (i) Vendedor – acesso às funcionalidades do controle de vendas e CRUD (Criar, Ler, Atualizar, Deletar) de produtos; (ii) Administrador – Todas as funcionalidades do Vendedor e visualização de estatísticas de vendas. | 
 
 
 ####2.1.3   Arquitetura de Software
