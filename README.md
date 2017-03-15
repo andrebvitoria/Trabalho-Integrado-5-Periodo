@@ -38,6 +38,7 @@ O sistema deve permitir que o vendedor cadastre, visualize, altere e remova os p
 | RF03 | Eu, como vendedor, desejo um sistema que calcule o preço total da venda e o troco do cliente para maior agilidade na venda. | Must |  | 
 
 ###4.2	Requisitos Não Funcionais
+
 | ID | Descrição | Prioridade | Categoria | Escopo |
 | --- | --- | --- | --- | --- |
 | RNF01 | Deve ser possível utilizar o sistema mesmo sem conexão com a internet | Must |  Acessibilidade | Funcionalidade |
@@ -50,6 +51,7 @@ O sistema deve permitir que o vendedor cadastre, visualize, altere e remova os p
 | RNF08 | O sistema deve controlar o acesso às funcionalidades. Funcionalidades de atendimento a clientes devem ser restritas a vendedores. Funcionalidades de controle de caixa devem ser restritas a administradores.  | Must | Segurança de Acesso | Sistema|
 
 ###4.3	Regras de Negócio
+
 | ID | Descrição | Prioridade | 
 | --- | --- | --- |
 | RN01 | Uma reserva expira quando passadas mais do que 24h de sua comunicação para o cliente. | Must |
