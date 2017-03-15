@@ -35,7 +35,7 @@ O sistema deve permitir que o vendedor cadastre, visualize, altere e remova os p
 | RF01 | Eu, como vendedor, quero fazer o controle de vendas pelo celular para que eu tenha maior mobilidade.  | Should | 2 |
 | RF02 | Eu, como administrador, desejo saber o fluxo de caixa de determinado período | Must | 3 |
 | RF04 | Eu, como administrador, desejo ter acesso à relatórios sobre produtos mais vendidos | Must |  |
-| RF03 | Eu, como vendedor, desejo um sistema que calcule o preço total da venda e o troco do cliente para maior agilidade na venda. | Must |  |
+| RF03 | Eu, como vendedor, desejo um sistema que calcule o preço total da venda e o troco do cliente para maior agilidade na venda. | Must |  | 
 
 ###4.2	Requisitos Não Funcionais
 | ID | Descrição | Prioridade | Categoria | Escopo |
