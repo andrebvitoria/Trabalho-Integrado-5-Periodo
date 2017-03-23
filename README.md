@@ -9,6 +9,7 @@ Trabalho desenvolvido durante as disciplinas de:
 
 **INTEGRANTES DO GRUPO:** 
 - André Barbosa da Vitoria<br>
+- Everson Delmaschio dos Santos <br>
 - Juliana Yuri Kanezaki de Souza<br>
 
         
