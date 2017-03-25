@@ -1,4 +1,4 @@
-# TRABALHO INTEGRADO: Título do trabalho
+# TRABALHO INTEGRADO: Surf Moulin
 
 Trabalho desenvolvido durante as disciplinas de:
 - Banco de Dados 2, 
@@ -8,7 +8,9 @@ Trabalho desenvolvido durante as disciplinas de:
 
 
 **INTEGRANTES DO GRUPO:** 
+- Ana Rúbia R. Vicente<br>
 - André Barbosa da Vitoria<br>
+- Everson Delmaschio<br>
 - Juliana Yuri Kanezaki de Souza<br>
 
         
