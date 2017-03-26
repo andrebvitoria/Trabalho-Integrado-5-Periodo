@@ -36,8 +36,23 @@ O sistema deve permitir que o vendedor cadastre, visualize, altere e remova os p
 | --- | --- | --- | --- |
 | RF01 | Eu, como vendedor, quero fazer o controle de vendas pelo celular para que eu tenha maior mobilidade.  | Should | 2 |
 | RF02 | Eu, como administrador, desejo saber o fluxo de caixa de determinado período | Must | 3 |
-| RF04 | Eu, como administrador, desejo ter acesso à relatórios sobre produtos mais vendidos | Must |  |
-| RF03 | Eu, como vendedor, desejo um sistema que calcule o preço total da venda e o troco do cliente para maior agilidade na venda. | Must |  | 
+| RF03 | Eu, como administrador, desejo ter acesso à relatórios sobre produtos mais vendidos | Must |  |
+| RF04 | Eu, como vendedor, desejo um sistema que calcule o preço total da venda e o troco do cliente para maior agilidade na venda. | Must |  | 
+| RF05 | Eu, como vendedor, desejo registrar minhas vendas para ter controle do estoque | Must |  |
+| RF06 | Eu, como Administrador, desejo registrar a compra de produtos para ter controle do estoque | Must |  |
+| RF07 | Eu, como Administrador, desejo poder cadastrar novos produtos para tê los registrado no sistema | Must |  |
+| RF08 | Eu, como Administrador, desejo saber o valor de custo e venda de cada produto cadastrado na loja.| Must |  |
+| RF09 | Eu, como vendedor, desejo dar desconto nas minhas vendas para poder fornecer um valor diferenciado. | Must |  |
+| RF10 | Eu, Como Administrador desejo cadastrar os alunos, que frequentam a escola de surf para controle | Must |  |
+| RF11 | Eu, como Administrador, desejo registrar a presença dos alunos ao iniciar uma aula para controle de frequência. | Must |  |
+| RF12 | Eu, como Administrador, desejo Ranquear os alunos por níveis para saber qual prancha indicar ao aluno. | Must |  |
+| RF13 | Eu, como Administrador, desejo registrar as informações de cada aula para gerenciamento e controle de alunos e professores. | Must |  |
+| RF14 | Eu, como Administrador, desejo registrar a aquisição de aula (avulsa)  para controle financeiro. | Must |  |
+| RF15 | Eu, como Administrador, desejo registrar a aquisição de pacotes de aulas para controle do período de validade e financeiro. | Must |  |
+| RF16 | Eu, como Administrador, desejo registrar a compra de um pacote de treinamento funcional para controle do período de validade e financeiro | Must |  |
+| RF17 | Eu, como Administrador, desejo registrar a compra de uma aula de treinamento funcional (avulso) para controle financeiro | Must |  |
+| RF18 | Eu, como aluno, desejo marcar uma aula pelo sistema para melhorar minha comunicação com a escola. | Must |  |
+
 
 ### 4.2	Requisitos Não Funcionais
 
@@ -56,8 +71,11 @@ O sistema deve permitir que o vendedor cadastre, visualize, altere e remova os p
 
 | ID | Descrição | Prioridade | 
 | --- | --- | --- |
-| RN01 | Uma reserva expira quando passadas mais do que 24h de sua comunicação para o cliente. | Must |
-| RN02 | Clientes em atraso não podem efetuar nem locações nem reservas. | Should |
+| RN01 | A contratação das aulas de treinamento funcional tem validade de 1 mês. | Must |
+| RN02 | A contratação do pacote de aulas de surf tem validade de 1 mês.| Should |
+| RN03 | O sistema deve permitir que sejam dados descontos em produtos e serviços| Should |
+| RN04 | O sistema deve dar baixa no estoque sempre que um produto for vendido. | Should |
+| RN05 | O sistema deve alimentar o estoque sempre que for registrada uma entrada de produtos.| Should |
 
 
 # Desenvolvimento do Sistema
