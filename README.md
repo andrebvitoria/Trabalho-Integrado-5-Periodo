@@ -166,7 +166,9 @@ O padrão foi utilizado para resolver o problema de .....
 
 
 ### 3.2	Modelo Lógico<br>
+![Alt text](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Modelos/Modelo%20Logico%20-%20Moulin%20v2.jpg?raw=true "Modelo Lógico")
 ### 3.3	MODELO FÍSICO<br>
+![Alt text](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Modelos/Modelo%20Fisico%20-%20Moulin%20v2.sql?raw=true "Modelo Físico")
 ### 3.4	INSERT APLICADO NAS TABELAS DO BANCO DE DADOS<br>
 #### 3.4.1 DETALHAMENTO DAS INFORMAÇÕES
         Detalhamento sobre as informações e processo de obtenção ou geração dos dados.
