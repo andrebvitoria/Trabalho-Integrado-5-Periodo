@@ -1,0 +1,23 @@
+dist: trusty
+sudo: required
+
+language: python
+python:
+  - "3.5"
+
+jdk:
+  - oraclejdk8
+
+addons:
+  sonarqube:
+    organization: "andrebvitoria-github"
+    token: $SONAR_TOKEN
+
+# command to install dependencies
+install: "pip install -r requirements.txt"
+# command to run tests
+script:
+  - sonar-scanner
+  
+notifications:
+  slack: altuscaldus:PQZbM5sCuzVCQsCSD5ja5wtO
