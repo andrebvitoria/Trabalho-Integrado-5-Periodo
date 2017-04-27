@@ -37,17 +37,10 @@ class Servico(models.Model):
         abstract = True
 
 
-class AulaAvulsa(Servico):
-    professor = models.ForeignKey(Professor)
-
-    def __str__(self):
-        return self.cliente.nome + ' (' + self.data.__str__() + ')'
-
-
 class Item(models.Model):
     nome = models.CharField(max_length=100, null=False)
     descricao = models.CharField(max_length=200, null=False)
-    data_entrada = models.DateTimeField()
+    data_entrada = models.DateField()
 
     def __str__(self):
         return self.nome
@@ -85,6 +78,8 @@ class Aluguel(Servico):
 
 
 class Aula(Servico):
+    professor = models.ForeignKey(Professor)
+
     def __str__(self):
         return self.cliente.nome + ' (' + self.data.__str__() + ')'
 
