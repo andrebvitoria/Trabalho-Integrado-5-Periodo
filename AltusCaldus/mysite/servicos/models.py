@@ -6,6 +6,8 @@ class Pessoa(models.Model):
     nome = models.CharField(max_length=200, null=False)
     cpf = models.CharField(max_length=11, null=False)
     email = models.EmailField()
+    GENERO = ('Masculino', 'Masculino'), ('Feminino', 'Feminino')
+    genero = models.CharField(max_length=9, choices=GENERO)
     celular = models.IntegerField()
     telefone = models.IntegerField()
     emergencia = models.IntegerField()
@@ -79,9 +81,12 @@ class Aluguel(Servico):
 
 class Aula(Servico):
     professor = models.ForeignKey(Professor)
+    inicio = models.TimeField()
 
     def __str__(self):
         return self.cliente.nome + ' (' + self.data.__str__() + ')'
+
+
 
 
 class PacoteAula(Servico):
