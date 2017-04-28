@@ -6,6 +6,8 @@ class Pessoa(models.Model):
     nome = models.CharField(max_length=200, null=False)
     cpf = models.CharField(max_length=11, null=False)
     email = models.EmailField()
+    GENERO = ('Masculino', 'Masculino'), ('Feminino', 'Feminino')
+    genero = models.CharField(max_length=9, choices=GENERO)
     celular = models.IntegerField()
     telefone = models.IntegerField()
     emergencia = models.IntegerField()
@@ -37,17 +39,10 @@ class Servico(models.Model):
         abstract = True
 
 
-class AulaAvulsa(Servico):
-    professor = models.ForeignKey(Professor)
-
-    def __str__(self):
-        return self.cliente.nome + ' (' + self.data.__str__() + ')'
-
-
 class Item(models.Model):
     nome = models.CharField(max_length=100, null=False)
     descricao = models.CharField(max_length=200, null=False)
-    data_entrada = models.DateTimeField()
+    data_entrada = models.DateField()
 
     def __str__(self):
         return self.nome
@@ -84,13 +79,30 @@ class Aluguel(Servico):
         return self.cliente.nome
 
 
-class Aula(Servico):
+class Aula(models.Model):
+    professor = models.ManyToManyField(Professor)
+    alunos = models.ManyToManyField(Aluno)
+    horario = models.DateTimeField()
+
+    def __str__(self):
+        data_hora = self.horario.__str__().split(' ')
+        data = data_hora[0].split('-')
+        hora = data_hora[1][:5]
+        aula = data[2] + '/' + data[1] + '/' + data[0] + ' ' + hora
+        return aula
+
+
+class AulaAvulsa(Servico):
+    aula = models.ForeignKey(Aula)
+
     def __str__(self):
         return self.cliente.nome + ' (' + self.data.__str__() + ')'
 
 
 class PacoteAula(Servico):
+    aulas_restantes = models.IntegerField()
     aulas = models.ManyToManyField(Aula)
 
     def __str__(self):
-        return "Pacote: " + self.cliente.nome + " (" + self.data.__str__() + ")"
+        return self.cliente.nome
+
