@@ -79,18 +79,29 @@ class Aluguel(Servico):
         return self.cliente.nome
 
 
-class Aula(Servico):
-    professor = models.ForeignKey(Professor)
-    inicio = models.TimeField()
+class Aula(models.Model):
+    professor = models.ManyToManyField(Professor)
+    alunos = models.ManyToManyField(Aluno)
+    horario = models.DateTimeField()
+
+    def __str__(self):
+        data_hora = self.horario.__str__().split(' ')
+        data = data_hora[0].split('-')
+        hora = data_hora[1][:5]
+        aula = data[2] + '/' + data[1] + '/' + data[0] + ' ' + hora
+        return aula
+
+
+class AulaAvulsa(Servico):
+    aula = models.ForeignKey(Aula)
 
     def __str__(self):
         return self.cliente.nome + ' (' + self.data.__str__() + ')'
 
 
-
-
 class PacoteAula(Servico):
+    aulas_restantes = models.IntegerField()
     aulas = models.ManyToManyField(Aula)
 
     def __str__(self):
-        return "Pacote: " + self.cliente.nome + " (" + self.data.__str__() + ")"
+        return self.cliente.nome
