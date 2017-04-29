@@ -81,6 +81,14 @@ celerybeat-schedule
 # virtualenv
 venv/
 ENV/
+AltusCaldus/myvenv/
+
+# idea
+*/.idea/
+.idea/
+
+# INI
+desktop.ini
 
 # Spyder project settings
 .spyderproject
