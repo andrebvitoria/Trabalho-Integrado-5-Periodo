@@ -32,8 +32,13 @@ class Professor(Pessoa):
 class Servico(models.Model):
     data = models.DateField()
     valor = models.FloatField()
+    desconto = models.FloatField()
     cliente = models.ForeignKey(Aluno)
     vendedor = models.ForeignKey('auth.User')
+
+    def prestar_servico(self, pagamento):
+        troco = pagamento - self.valor + self.desconto
+        return troco
 
     class Meta:
         abstract = True
@@ -50,6 +55,16 @@ class Item(models.Model):
 
 class Guarderia(Servico):
     item = models.ForeignKey(Item, blank=True, null=False)
+    vencimento = models.DateField()
+
+    def prestar_servico(self, pagamento):
+        troco = pagamento - self.valor + self.desconto
+        if troco > -1:
+            self.vencimento = models.DateField(default=timezone.now() + timezone.timedelta(days=30))
+        return troco
+
+    def renovar(self, pagamento):
+        return self.prestar_servico(self, pagamento)
 
     def __str__(self):
         return self.cliente.nome
