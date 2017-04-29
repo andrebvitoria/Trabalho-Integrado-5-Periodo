@@ -97,3 +97,4 @@ AltusCaldus/mysite/db.sqlite3
 # Rope project settings
 .ropeproject
 .idea/
+AltusCaldus/.idea/*
