@@ -25,8 +25,7 @@ class Produto(models.Model):
     percent_desc = models.IntegerField()
     promocao = models.FloatField()
     qtd_estoque = models.IntegerField()
-    grupo = models.ForeignKey('Categoria', on_delete=models.CASCADE)
-
+    grupo = models.ManyToManyField('Categoria')
     def __str__(self):
         return str(self.nome)
 
