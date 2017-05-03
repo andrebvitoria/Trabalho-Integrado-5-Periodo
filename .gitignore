@@ -82,12 +82,12 @@ celerybeat-schedule
 # virtualenv
 venv/
 ENV/
-AltusCaldus/myvenv/
+myvenv/
 
 # idea
-.idea/
 AltusCaldus/mysite/.idea/
 AltusCaldus/.idea/
+.idea/
 
 # SQL Lite
 AltusCaldus/mysite/db.sqlite3
