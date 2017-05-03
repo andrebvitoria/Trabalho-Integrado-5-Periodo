@@ -1,23 +1,23 @@
 dist: trusty
 sudo: required
-
 language: python
 python:
-  - "3.5"
-
+- '3.5'
 jdk:
-  - oraclejdk8
-
+- oraclejdk8
 addons:
   sonarqube:
-    organization: "andrebvitoria-github"
-    token: $SONAR_TOKEN
-
-# command to install dependencies
-install: "pip install -r requirements.txt"
-# command to run tests
+    organization: andrebvitoria-github
+    token: "$SONAR_TOKEN"
+install: pip install -r requirements.txt
 script:
-  - sonar-scanner
-  
+- sonar-scanner
 notifications:
   slack: altuscaldus:PQZbM5sCuzVCQsCSD5ja5wtO
+deploy:
+  provider: heroku
+  api_key:
+    secure: pm+BIkQC3Dh+B08/FDDVtsayxCbw0ulkmKpZfW4Zf/ZW0K3grZk+PvwXbGxBwi0Vosn4Q5RxfTbmg6IRher/+rj5NrDr8XHLlmC/yqCLnPMXw6ePf96cWB7d2HOFVWDNPMpkxol9Oz1gUET4T7aDl74L7goZwzQOb6cNHpTu511If6wSI9AL2ODyr7IXWtnwNohv1cKqI/P1Do7l6CS5YQWyS1dyQRa5Qhnsi7v8YdEF+TdbI7+e/pEmIE8RQiVOF3prG69gWWZE+aNbcrIOGg6RRIZmwhMYzb2ticPVqkGwC/4o+88olv0JUF3lmEkyXODF5I6MFKLozV1hoxjbSApa+o6K5d2Shi8fitGSkGcn8UtuaGzrOzTPEl9A8IUlRpurlEtrpdH8P6tdGPccf6bBcG6lQkDxeXnG7M86FSC//o9NsMDkEUrt7kR1oUcn+BAnyh3UQ13AtrtmwIIQOSG5Z0Ml80c9n3j7HWsKVVkwPyiJijZBPoWkHj9L4VO0y9dVSwa4Zg5TAIO55u8sSIYL5IsOOgdyEfk51BiRY3V9bywqPq6Us19v99y0m44VTy1bpauTzJqk1pcKjBkaRVPfV2umSUfx9M+T6EkWg3j7NutyfAru7CxZY7THmd8sYdG6OIVa3kPuBJjT7prmkJWxZC53OlwCt+Ci8Rr6PcU=
+  app: altuscaldus
+  on:
+    repo: andrebvitoria/Trabalho-Integrado-5-Periodo
