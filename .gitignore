@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyc
 
 # C extensions
 *.so
@@ -81,17 +82,26 @@ celerybeat-schedule
 # virtualenv
 venv/
 ENV/
-AltusCaldus/myvenv/
+myvenv/
 
 # idea
-*/.idea/
-.idea/
+AltusCaldus/mysite/.idea/
+AltusCaldus/.idea/
 
-# INI
-desktop.ini
+# SQL Lite
+*.sqlite3
+
 
 # Spyder project settings
 .spyderproject
 
 # Rope project settings
 .ropeproject
+
+.idea/
+AltusCaldus/.idea/
+AltusCaldus/mysite/.idea/
+
+# Ini
+
+*.ini
