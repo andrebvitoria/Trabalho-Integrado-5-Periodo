@@ -89,7 +89,7 @@ AltusCaldus/mysite/.idea/
 AltusCaldus/.idea/
 
 # SQL Lite
-db.sqlite3
+*.sqlite3
 
 
 # Spyder project settings
