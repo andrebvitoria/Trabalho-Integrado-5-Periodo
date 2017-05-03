@@ -84,6 +84,7 @@ ENV/
 AltusCaldus/myvenv/
 
 # idea
+.idea/
 AltusCaldus/mysite/.idea/
 AltusCaldus/.idea/
 
@@ -96,5 +97,6 @@ AltusCaldus/mysite/db.sqlite3
 
 # Rope project settings
 .ropeproject
-.idea/
-AltusCaldus/.idea/*
+
+# Ini
+*.ini
