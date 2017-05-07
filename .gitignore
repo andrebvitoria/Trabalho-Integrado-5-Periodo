@@ -103,5 +103,7 @@ AltusCaldus/.idea/
 AltusCaldus/mysite/.idea/
 
 # Ini
-
 *.ini
+
+# Migrations
+migrations/
