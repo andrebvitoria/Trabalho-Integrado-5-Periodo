@@ -82,27 +82,27 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
 #para usar o sqlite3
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
+'''
 
 #Para usar o postgres
-'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'altuscaldus',
         'USER': 'postgres',
-        'PASSWORD': '123123',
+        'PASSWORD': 'ifes2017',
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
-'''
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
