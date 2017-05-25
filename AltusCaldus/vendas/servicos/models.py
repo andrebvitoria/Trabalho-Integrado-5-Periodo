@@ -97,8 +97,10 @@ class Guarderia(Servico):
     def valor_total(self):
         qs = self.guarderia_det.filter(guarderia=self.pk).values_list('valor') or 0
         t = 0 if isinstance(qs, int) else (sum(map(lambda q: q[0], qs)))
-        if t >= self.desconto:
+        if t > self.desconto:
             t -= self.desconto
+        else:
+            t=0
         return "R$ %s" % number_format(t, 2)
 
 class DetalheGuarderia(models.Model):
@@ -147,8 +149,10 @@ class Aluguel(Servico):
     def valor_total(self):
         qs = self.aluguel_det.filter(aluguel=self.pk).values_list('valor') or 0
         t = 0 if isinstance(qs, int) else (sum(map(lambda q: q[0], qs)))
-        if t >= self.desconto:
+        if t > self.desconto:
             t -= self.desconto
+        else:
+            t=0
         return "R$ %s" % number_format(t, 2)
 
 class DetalheAluguel(models.Model):
