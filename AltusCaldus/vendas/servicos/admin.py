@@ -56,7 +56,7 @@ class AluguelAdmin(admin.ModelAdmin):
 admin.site.register(AulaMarcada)
 
 class AulaDetailInline(admin.TabularInline):
-    list_display = ['aula','professor']
+    list_display = ['aula', 'professor']
     readonly_fields = ['get_subtotal']
     model = DetalheAula
     extra = 0
