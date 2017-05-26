@@ -1,95 +1,96 @@
+CREATE TABLE PESSOA (
+    nome varchar(250),
+    id_pessoa SERIAL PRIMARY KEY,
+    cpf varchar(11),
+    email varchar(250),
+    celular varchar(12),
+    telefone varchar(11),
+    emergencia varchar(12),
+    genero varchar(10)
+);
+
 CREATE TABLE ALUNO (
-    id_aluno SERIAL PRIMARY KEY
-    FK_PESSOA_id_pessoa SERIAL,
+    id_aluno SERIAL PRIMARY KEY,
+    FK_PESSOA_id_pessoa SERIAL
 );
 
 CREATE TABLE PROFESSOR (
-    id_professor SERIAL PRIMARY KEY
-    FK_PESSOA_id_pessoa SERIAL,
+    id_professor SERIAL PRIMARY KEY,
+    FK_PESSOA_id_pessoa SERIAL
 );
 
 CREATE TABLE VENDEDOR (
-    id_vendedor SERIAL PRIMARY KEY
-    FK_PESSOA_id_pessoa SERIAL,
+    id_vendedor SERIAL PRIMARY KEY,
+    FK_PESSOA_id_pessoa SERIAL
 );
 
 CREATE TABLE SERVICO (
-    id_servico SERIAL PRIMARY KEY
-    data DATE
-    valor FLOAT
-    desconto FLOAT
-    FK_VENDEDOR_id_vendedor SERIAL
-    FK_ALUNO_id_aluno SERIAL,
+    id_servico SERIAL PRIMARY KEY,
+    data DATE,
+    valor FLOAT,
+    desconto FLOAT,
+    FK_VENDEDOR_id_vendedor SERIAL,
+    FK_ALUNO_id_aluno SERIAL
 );
 
 CREATE TABLE GUARDERIA (
-    vencimento DATE
-    id_guarderia SERIAL PRIMARY KEY
-    FK_SERVICO_id_servico SERIAL,
+    vencimento DATE,
+    id_guarderia SERIAL PRIMARY KEY,
+    FK_SERVICO_id_servico SERIAL
 );
 
 CREATE TABLE ALUGUEL (
-    id_aluguel SERIAL PRIMARY KEY
-    FK_SERVICO_id_servico SERIAL,
+    id_aluguel SERIAL PRIMARY KEY,
+    FK_SERVICO_id_servico SERIAL
 );
 
 CREATE TABLE AULA (
-    id_aula SERIAL PRIMARY KEY
-    FK_SERVICO_id_servico SERIAL,
+    id_aula SERIAL PRIMARY KEY,
+    FK_SERVICO_id_servico SERIAL
 );
 
 CREATE TABLE DETALHE_GUARDERIA (
-    id_detalhe_guarderia SERIAL PRIMARY KEY
-    valor FLOAT
-    FK_GUARDERIA_id_guarderia SERIAL
-    FK_ITEM_id_item SERIAL,
+    id_detalhe_guarderia SERIAL PRIMARY KEY,
+    valor FLOAT,
+    FK_GUARDERIA_id_guarderia SERIAL,
+    FK_ITEM_id_item SERIAL
 );
 
 CREATE TABLE DETALHE_ALUGUEL (
-    valor FLOAT
-    FK_ALUGUEL_id_aluguel SERIAL,
+    valor FLOAT,
+    FK_ALUGUEL_id_aluguel SERIAL
 );
 
 CREATE TABLE DETALHE_AULA (
-    id_detalhe_aula SERIAL PRIMARY KEY
-    valor FLOAT
-    FK_AULA_id_aula SERIAL
-    FK_AULA_MARCADA_id_aula_marcada SERIAL
-    FK_PROFESSOR_id_professor SERIAL,
+    id_detalhe_aula SERIAL PRIMARY KEY,
+    valor FLOAT,
+    FK_AULA_id_aula SERIAL,
+    FK_AULA_MARCADA_id_aula_marcada SERIAL,
+    FK_PROFESSOR_id_professor SERIAL
 );
 
 CREATE TABLE ITEM (
-    id_item SERIAL PRIMARY KEY
-    nome VARCHAR(250)
-    descricao VARCHAR(250),
+    id_item SERIAL PRIMARY KEY,
+    nome VARCHAR(250),
+    descricao VARCHAR(250)
 );
 
 CREATE TABLE PRANCHA (
-    litragem FLOAT
-    altura FLOAT
-    FK_TIPO_PRANCHA_id_tipo_prancha SERIAL,
+    litragem FLOAT,
+    altura FLOAT,
+    FK_TIPO_PRANCHA_id_tipo_prancha SERIAL
 );
 
 CREATE TABLE AULA_MARCADA (
-    id_aula_marcada SERIAL PRIMARY KEY
-    horario DATETIME,
+    id_aula_marcada SERIAL PRIMARY KEY,
+    horario TIMESTAMP
 );
 
 CREATE TABLE TIPO_PRANCHA (
-    id_tipo_prancha SERIAL PRIMARY KEY
-    descricao varchar(250),
+    id_tipo_prancha SERIAL PRIMARY KEY,
+    descricao varchar(250)
 );
 
-CREATE TABLE PESSOA (
-    nome varchar(250)
-    id_pessoa SERIAL PRIMARY KEY
-    cpf varchar(11)
-    email varchar(250)
-    celular varchar(12)
-    telefone varchar(11)
-    emergencia varchar(12)
-    genero varchar(10),
-);
  
 ALTER TABLE ALUNO ADD CONSTRAINT FK_ALUNO_1
     FOREIGN KEY (FK_PESSOA_id_pessoa)
