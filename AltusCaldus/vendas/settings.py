@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_extensions',
     # my apps
     'vendas.servicos',
+    'behave_django',
 ]
 
 MIDDLEWARE = [

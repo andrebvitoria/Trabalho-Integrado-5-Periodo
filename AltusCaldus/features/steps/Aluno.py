@@ -33,7 +33,7 @@ def step_impl(context, url_saida:str):
 
 
 @when('Informo ou o {nome}, ou o {genero}, ou o {data_nascimento}, ou o {cpf}, ou o {email}, ou o {telefone}, ou o {celular}, ou o {emergencia} errado')
-def step_impl(context, nome, genero: str, data_nascimento: str, cpf: str, email: str, telefone: str, celular: str,
+def step_impl(context, nome:str, genero: str, data_nascimento: str, cpf: str, email: str, telefone: str, celular: str,
               emergencia: str):
     br = context.browser
 
@@ -43,8 +43,4 @@ def step_impl(context, nome, genero: str, data_nascimento: str, cpf: str, email:
     br.find_by_css('.submit-row input').first.click()
 
 
-@then(u'Continuo na pagina {url_saida}')
-def step_impl(context, url_saida:str):
-    url_atual = context.browser.url
-    assert (url_atual == (context.base_url + url_saida))
 

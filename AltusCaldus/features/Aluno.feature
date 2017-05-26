@@ -17,7 +17,7 @@ Feature: Cadastrar Aluno
 
       Given Estou na <url>
       When Informo ou o <nome>, ou o <genero>, ou o <data_nascimento>, ou o <cpf>, ou o <email>, ou o <telefone>, ou o <celular>, ou o <emergencia> errado
-      Then Continuo na pagina <url_saida>
+      Then Eu sou direcionado para <url_saida>
 
     Examples:
    | url | nome | genero | data_nascimento | cpf | email | telefone | celular | emergencia | url_saida |

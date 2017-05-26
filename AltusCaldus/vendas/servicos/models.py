@@ -137,7 +137,6 @@ class Prancha(TimeStampedModel):
 
 
 class Aluguel(Servico):
-    valor = models.Empty()
 
     class Meta:
         verbose_name = 'Aluguel'
@@ -154,6 +153,8 @@ class Aluguel(Servico):
         else:
             t = 0
         return "R$ %s" % number_format(t, 2)
+
+    valor = property(valor_total)
 
 class DetalheAluguel(models.Model):
     aluguel = models.ForeignKey(Aluguel, related_name='aluguel_det')
