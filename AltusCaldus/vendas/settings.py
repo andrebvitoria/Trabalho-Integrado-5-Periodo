@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django_extensions',
     # my apps
     'vendas.servicos',
+    'vendas.loja',
     'behave_django',
 ]
 
@@ -78,10 +79,25 @@ WSGI_APPLICATION = 'vendas.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+'''
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {
     'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
 }
+
+'''
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'altuscaldus',
+        'USER': 'postgres',
+        'PASSWORD': '123123',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
 
 
 # Password validation
