@@ -38,15 +38,26 @@ class GuarderiaAdmin(admin.ModelAdmin):
 # 	inlines = [VendaDetailInline]
 
 
+
+admin.site.register(Cantina)
+
+admin.site.register(Camisa)
+admin.site.register(TamanhoCamisa)
+admin.site.register(TipoCamisa)
+admin.site.register(Cor)
+
+admin.site.register(Prancha)
+admin.site.register(TipoPrancha)
+
 class DetalheProdutoInLine(admin.TabularInline):
-    list_display = ['nome', 'quantidade']
-    readonly_fields = ['get_categoria','get_preco']
+    list_display = ['nome', 'quantidade', 'total']
+    readonly_fields = ['get_valor','get_preco']
     model = DetalheProduto
     extra = 0
 
 @admin.register(Produto)
 class ProdutoAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'qtd','preco','categoria',)
+    list_display = ('qtd','preco','categoria',)
     date_hierarchy = 'created'
     list_filter = ('categoria',)
     search_fields = ('nome',)  
@@ -54,7 +65,7 @@ class ProdutoAdmin(admin.ModelAdmin):
 
 @admin.register(Venda)    
 class VendaAdmin(admin.ModelAdmin):
-    list_display = ('cliente','vendedor', 'data')
+    list_display = ('cliente','vendedor', 'data',)
     date_hierarchy = 'created'
     search_fields = ('cliente',)
     list_filter = ('data',)
