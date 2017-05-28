@@ -16,29 +16,33 @@ class TimeStampedModel(models.Model):
         abstract = True
 
 
+#=================================={Produto}================================#
+
+class Categoria(TimeStampedModel):
+    descricao = models.CharField('Descricao', max_length=200)
+
+    def __str__(self):
+        return self.descricao
+
+
 class Produto(TimeStampedModel):
-    qtd = models.IntegerField(verbose_name='Quantidade')
-    categoria = models.CharField(max_length=250)
+    nome = models.CharField('Nome', max_length=200)
+    descricao = models.CharField('Descricao', max_length=200, blank = True, null=True)
+    qtd = models.IntegerField(verbose_name='Quantidade', blank=True, null=True)
+    categoria = models.ForeignKey(Categoria, verbose_name='Categoria')
     preco = models.DecimalField(verbose_name ='Preco', max_digits=6, decimal_places=2, default=0)
 
 
     def __str__(self):
-        return self.categoria
+        return self.nome
 
 
 class Cantina(Produto):
-    nome = models.CharField('Nome', max_length=200)
-    descricao = models.CharField('Descricao', max_length=200)
-
+    pass
 
     def __str__(self):
         return self.nome
     
-
-    def get_subtotal(self):
-        return self.valor_venda
-
-
 
 class Cor(models.Model):
     descricao = models.CharField('Descrição', max_length=200, null=False)
@@ -51,28 +55,15 @@ class Cor(models.Model):
         return self.descricao
 
 
-class TamanhoCamisa(models.Model):
-    descricao = models.CharField('Descrição', max_length=200, null=False)
-
-    def __str__(self):
-        return self.descricao
-
-
-class TipoCamisa(models.Model):
-    descricao = models.CharField('Descrição', max_length=200, null=False)
-
-    def __str__(self):
-        return self.descricao
-
 
 class Camisa(Produto):
+    tamanho =[('PP', 'PP'),('P', 'P'),('M','M'),('G','G'),('GG','GG')]
     valor_custo = models.DecimalField('Valor de Custo', max_digits=6, decimal_places=2, default=0)
-    tipo_camisa = models.ForeignKey(TipoCamisa, verbose_name='Tipo')
-    tamanho = models.ForeignKey(TamanhoCamisa, verbose_name='Tamanho')
+    tamanho = models.CharField('Tamanho', max_length=2, choices=tamanho)
     cor = models.ForeignKey(Cor, verbose_name='Cor')
 
     def __str__(self):
-        return str(self.tipo_camisa)
+        return self.descricao
 
     def get_subtotal(self):
         return self.valor_venda
@@ -91,7 +82,6 @@ class TipoPrancha(TimeStampedModel):
 
 
 class Prancha(Produto):
-    descricao = models.CharField('Descrição', max_length=200, null=True)
     altura = models.DecimalField('Altura', max_digits=6, decimal_places=2, default=0)
     litragem = models.DecimalField('Litragem', max_digits=6, decimal_places=2, default=0)
     tipo_prancha = models.ForeignKey(TipoPrancha, verbose_name='Tipo de Prancha')
@@ -109,42 +99,62 @@ class Prancha(Produto):
         return self.valor_venda
 
 
+#=================================={Vendas}================================#
+
+
+
+class Cliente(TimeStampedModel):
+    nome = models.CharField(max_length=255)
+
+
+    def __str__(self):
+        return self.nome
 
 
 class Venda(TimeStampedModel):
-    cliente = models.CharField(max_length=255)
+    cliente = models.ForeignKey(Cliente, verbose_name='Cliente', null=True, blank=True)
     vendedor = models.ForeignKey('auth.User', verbose_name='Vendedor')
     data = models.DateTimeField('vendido em', auto_now_add=True, auto_now=False, blank=True)
-    #valor = models.DecimalField('Valor R$', max_digits=6, decimal_places=2, default=0)
-    #desconto = models.DecimalField('Desconto R$', max_digits=6, decimal_places=2, default=0)
+    total = models.DecimalField('Valor R$', max_digits=6, decimal_places=2, default=0)
+    desconto = models.DecimalField('Desconto R$',max_digits=6, decimal_places=2, default=0)
+
 
     def __str__(self):
-        return self.cliente
-    
+        return str(self.data)
 
 
-class DetalheProduto(TimeStampedModel):
+    def _total(self):
+        qs = self.venda_det.filter(venda=self.pk).values_list('preco','quantidade') or 0
+        t = 0 if isinstance(qs, int) else sum(map(lambda q: q[0]*q[1], qs))
+        setattr(self,'total', t )
+        return "R$ %s" % number_format(t, 2)
+
+
+
+        
+class DetalheVenda(TimeStampedModel):
     produto = models.ForeignKey(Produto, verbose_name='Produto')
     venda = models.ForeignKey(Venda, verbose_name='Venda', related_name='venda_det')
-    preco = models.DecimalField(verbose_name ='Preco', max_digits=6, decimal_places=2, default=0)
+    preco = models.DecimalField(verbose_name ='Preco', max_digits=6, decimal_places=2, default=25)
     quantidade = models.DecimalField(verbose_name ='Quantidade', max_digits=6, decimal_places=0, default=1)
-    categoria = models.CharField(verbose_name='Categoria', max_length=250)
-    valor = models.DecimalField(verbose_name ='Valor', max_digits=6, decimal_places=2, default=0)
     
 
-    def get_categoria(self):
-        return self.produto.categoria
 
-    def get_preco(self):
-        return self.produto.preco*self.quantidade
-     
-    def get_valor(self):
-        return self.produto.preco
+    def _qtd(self, value):
+        self.quantidade = value
+    
+    @property
+    def subtotal(self):
+        return self.preco*self.quantidade
+    
+
+    def subtotal_formated(self):
+        return "R$ %s" % number_format(self.sub, 2)
 
     
-    valor = property(get_valor)    
-    categoria = property(get_categoria)
-    preco = property(get_preco)
 
+    
+    
+    
 
 
