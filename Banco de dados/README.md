@@ -47,4 +47,15 @@ SELECT *FROM TIPO_PRANCHA LIMIT 10;
 
 ### 3.5.3	SELECT DAS VISÕES COM PRIMEIROS 10 REGISTROS<br>
 
+select *from dados_guarderia;
 ### 3.5.4	LISTA DE CODIGOS DAS FUNÇÕES, ASSERÇOES E TRIGGERS<br>
+
+INSERT INTO GUARDERIA (data,valor,desconto,id_vendedor,id_aluno,vencimento) VALUES ('2017-05-28',30,-5,41404,55862,'2017-06-28');
+
+INSERT INTO GUARDERIA (data,valor,desconto,id_vendedor,id_aluno,vencimento) VALUES ('2017-05-28',30,0,41404,55862,'2017-06-28');
+select aumenta_valor_guarderia(500002, 10);
+select *from guarderia where id_guarderia = 500002;
+
+INSERT INTO GUARDERIA (data,valor,desconto,id_vendedor,id_aluno,vencimento) VALUES ('2017-05-28',30,0,41404,55862,'2017-06-28');
+select reduz_valor_guarderia(500003, 10);
+select *from guarderia where id_guarderia = 500003;
