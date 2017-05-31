@@ -1,4 +1,4 @@
-﻿Procedimento de Geração de dados Simulados
+### Procedimento de Geração de dados Simulados
 
 ### DADOS SERVIÇO
 
@@ -27,7 +27,7 @@
  
 4) Execute o código gera-venda.py para gerar os dados de venda.
    Execute todas as transformações para enviar ao banco de dados.
-	-> Execute a transformação de VENDA antes do ITEM_VENDA.
+	1. Execute a transformação de VENDA antes do ITEM_VENDA.
 
 5) Execute o código gera-item-entrada.py para gerar os dados de itens de entrada.
    Execute todas as transformações para enviar ao banco de dados.
