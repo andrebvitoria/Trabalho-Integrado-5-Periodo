@@ -72,14 +72,20 @@
 #### Visão 1
  - Essa view serve para visualizar os dados de servicos (aluguel, aula e guarderia) com todos os dados, no lugar dos ID's é mostrado o nome da pessoa. <br>
  - View:  [Dados Serviços](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/Views/dados_servico.sql)<br>
+ 
     select * from dados_guarderia;
+    
+    
 ![Dados Guarderia](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/view_dados_guarderia.PNG)<br>
 
 
 #### Visão 2
  - Essa view serve para visualizar os dados da loja (camisa, prancha e venda) com todos os dados, no lugar dos ID's é mostrado o nome da categoria, cliente, tipo do produto e etc . <br>
  - View:  [Dados Loja](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/Views/dados_loja.sql)<br>
+ 
     select * from dados_camisa;
+    
+    
 ![Dados Camisa](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/loja/view_dados_camisa.png)<br>
 
 
