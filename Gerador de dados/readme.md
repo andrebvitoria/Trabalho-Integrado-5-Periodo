@@ -1,4 +1,6 @@
-Procedimento de Geração de dados Simulados
+﻿Procedimento de Geração de dados Simulados
+
+### DADOS SERVIÇO
 
 1° Execute os 2 códigos de Geração de dados.<br><br>
 
@@ -9,3 +11,27 @@ Procedimento de Geração de dados Simulados
 	1° Execute a 1° fileira ela não possui dependências.<br>
 	2° Execute a 2° fileira ela depende da 1°.<br>
 	3° Execute a 3° fileira ela depende da 1° e da 2°.<br>
+
+
+
+### DADOS LOJA
+
+1) Execute o código gera-entrada.py para gerar os dados de entrada.
+   Execute todas as transformações para enviar ao banco de dados.
+
+2) Execute o código gera-produto.py para gerar os dados de produto.
+   Execute todas as transformações para enviar ao banco de dados.
+
+3) Execute o código gera-cliente.py para gerar os dados de cliente.
+   Execute todas as transformações para enviar ao banco de dados.
+ 
+4) Execute o código gera-venda.py para gerar os dados de venda.
+   Execute todas as transformações para enviar ao banco de dados.
+	-> Execute a transformação de VENDA antes do ITEM_VENDA.
+
+5) Execute o código gera-item-entrada.py para gerar os dados de itens de entrada.
+   Execute todas as transformações para enviar ao banco de dados.
+
+
+
+

@@ -1,4 +1,4 @@
-### 3.5.2	SELECT DAS TABELAS COM PRIMEIROS 10 REGISTROS INSERIDOS
+﻿### 3.5.2	SELECT DAS TABELAS COM PRIMEIROS 10 REGISTROS INSERIDOS
 SELECT *FROM PESSOA LIMIT 10;<br>
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_pessoa.PNG)
 
@@ -43,6 +43,12 @@ SELECT *FROM AULA_MARCADA LIMIT 10;<br>
 
 SELECT *FROM TIPO_PRANCHA LIMIT 10;<br>
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_tipo_prancha.PNG)
+
+
+`SELECT * FROM TIPO_PRANCHA LIMIT 10;`<br>
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/loja/select_camisa.PNG)
+
+
 
 
 ### 3.5.3	SELECT DAS VISÕES COM PRIMEIROS 10 REGISTROS<br>
