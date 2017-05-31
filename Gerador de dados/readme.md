@@ -1,6 +1,6 @@
-### Procedimento de Geração de dados Simulados
+## Procedimento de Geração de dados Simulados
 
-### DADOS SERVIÇO
+### Dados Serviço
 
 1° Execute os 2 códigos de Geração de dados.<br><br>
 
@@ -14,7 +14,7 @@
 
 
 
-### DADOS LOJA
+### Dados Loja
 
 1) Execute o código gera-entrada.py para gerar os dados de entrada. <br>
    Execute todas as transformações para enviar ao banco de dados.
@@ -31,7 +31,3 @@
 
 5) Execute o código gera-item-entrada.py para gerar os dados de itens de entrada. <br>
    Execute todas as transformações para enviar ao banco de dados.
-
-
-
-
