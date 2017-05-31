@@ -93,24 +93,34 @@
 #### Função 1
  - Essa função tem o objetivo de aumentar o valor do serviço informado.
  - Função: [Aumenta Valor Serviços](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/Functions/aumenta_valor_servico.sql)<br>
-INSERT INTO GUARDERIA (data,valor,desconto,id_vendedor,id_aluno,vencimento) VALUES ('2017-05-28',30,0,41404,55862,'2017-06-28');<br>
-select aumenta_valor_guarderia(500002, 10);<br>
-select * from guarderia where id_guarderia = 500002;<br>
+ 
+`INSERT INTO GUARDERIA (data,valor,desconto,id_vendedor,id_aluno,vencimento) VALUES ('2017-05-28',30,0,41404,55862,'2017-06-28');`
+
+`SELECT aumenta_valor_guarderia(500002, 10);`
+
+`SELECT * FROM guarderia WHERE id_guarderia = 500002;`
+
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/function_aumenta_valor_servico.PNG)<br>
 
 
 #### Função 2
  - Essa função tem o objetivo de diminuir o valor do serviço informado.
  - Função: [Reduz Valor Serviços](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/Functions/reduz_valor_servico.sql)<br>
-INSERT INTO GUARDERIA (data,valor,desconto,id_vendedor,id_aluno,vencimento) VALUES ('2017-05-28',30,0,41404,55862,'2017-06-28');<br>
-select reduz_valor_guarderia(500003, 10);<br>
-select *from guarderia where id_guarderia = 500003;<br>
+ 
+`INSERT INTO GUARDERIA (data,valor,desconto,id_vendedor,id_aluno,vencimento) VALUES ('2017-05-28',30,0,41404,55862,'2017-06-28');`
+
+`SELECT reduz_valor_guarderia(500003, 10);`
+
+`SELECT * FROM guarderia WHERE id_guarderia = 500003;`
+
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/function_reduz_valor_servico.PNG)<br>
 
 #### Trigger 1
  - Essa trigger impõe que o desconte deve ser igual ou maior que zero.
  - Trigger: [valor_desconto_minimo](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/Triggers/valor_desconto_minimo.sql)<br>
-INSERT INTO GUARDERIA (data,valor,desconto,id_vendedor,id_aluno,vencimento) VALUES ('2017-05-28',30,-5,41404,55862,'2017-06-28');<br>
+ 
+`INSERT INTO GUARDERIA (data,valor,desconto,id_vendedor,id_aluno,vencimento) VALUES ('2017-05-28',30,-5,41404,55862,'2017-06-28');`
+
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/trigger_desconto_minimo.PNG)<br>
 
 #### Trigger 2
