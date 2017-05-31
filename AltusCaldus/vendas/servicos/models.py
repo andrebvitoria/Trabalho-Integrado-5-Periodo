@@ -10,6 +10,7 @@ class TimeStampedModel(models.Model):
     class Meta:
         abstract = True
 
+
 #================================{Pessoas}================================#
 class Pessoa(TimeStampedModel):
     genero_list = [('M', 'Masculino'), ('F', 'Feminino')]
@@ -69,6 +70,7 @@ class Servico(TimeStampedModel):
         pass
         return
 
+
 #================================{Guarderia}================================#
 class Item(models.Model):
     nome = models.CharField('Item', max_length=100, null=False)
@@ -90,7 +92,6 @@ class Guarderia(Servico):
         verbose_name = 'Guarderia'
         verbose_name_plural = 'Guarderia'
 
-
     def __str__(self):
         return self.cliente.nome
 
@@ -103,6 +104,7 @@ class Guarderia(Servico):
             t = 0
         return "R$ %s" % number_format(t, 2)
 
+
 class DetalheGuarderia(models.Model):
     guarderia = models.ForeignKey(Guarderia, related_name='guarderia_det')
     item = models.ForeignKey(Item, verbose_name='itens')
@@ -110,6 +112,7 @@ class DetalheGuarderia(models.Model):
 
     def get_subtotal(self):
         return self.valor
+
 
 #================================{Aluguel}================================#
 class TipoPrancha(TimeStampedModel):
@@ -121,6 +124,7 @@ class TipoPrancha(TimeStampedModel):
 
     def __str__(self):
         return self.descricao
+
 
 class Prancha(TimeStampedModel):
     descricao = models.CharField('Descrição', max_length=200, null=False)
