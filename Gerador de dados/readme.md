@@ -16,20 +16,20 @@
 
 ### DADOS LOJA
 
-1) Execute o código gera-entrada.py para gerar os dados de entrada.
+1) Execute o código gera-entrada.py para gerar os dados de entrada. <br>
    Execute todas as transformações para enviar ao banco de dados.
 
-2) Execute o código gera-produto.py para gerar os dados de produto.
+2) Execute o código gera-produto.py para gerar os dados de produto. <br>
    Execute todas as transformações para enviar ao banco de dados.
 
-3) Execute o código gera-cliente.py para gerar os dados de cliente.
+3) Execute o código gera-cliente.py para gerar os dados de cliente. <br>
    Execute todas as transformações para enviar ao banco de dados.
  
-4) Execute o código gera-venda.py para gerar os dados de venda.
+4) Execute o código gera-venda.py para gerar os dados de venda.<br>
    Execute todas as transformações para enviar ao banco de dados.
 	1. Execute a transformação de VENDA antes do ITEM_VENDA.
 
-5) Execute o código gera-item-entrada.py para gerar os dados de itens de entrada.
+5) Execute o código gera-item-entrada.py para gerar os dados de itens de entrada. <br>
    Execute todas as transformações para enviar ao banco de dados.
 
 
