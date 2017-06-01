@@ -126,8 +126,12 @@
 #### Trigger 2
  - Essa trigger impõe que o valor de venda dos produtos deve ser maior que o valor de custo.
  - Trigger: [limite_valor_custo_produto](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/Triggers/limite_valor_custo_produto.sql)<br>
+ 
+ 'INSERT INTO CAMISA VALUES('CAMISA MOULLIN',100,1,1,1,1,10);'
 
 #### Trigger 3
  - Essa trigger impõe que o valor dos produtos deve ser maior que zero.
  - Trigger: [valor_venda_produto_minimo](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/Triggers/valor_venda_produto_minimo.sql)<br>
+ 
+ 'INSERT INTO CAMISA VALUES('CAMISA MOULLIN',0,1,1,1,1,0);'
 
