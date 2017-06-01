@@ -55,5 +55,22 @@ class VendaAdmin(admin.ModelAdmin):
     date_hierarchy = 'created'
     list_filter = ('data',)
     inlines = [DetalheVendaInline]
+    
 
+#==========={Entrada}===========#
+
+class EntradaDetailInline(admin.TabularInline):
+    list_display = ['produto','quantidade', 'SubTotal',]
+    readonly_fields = ['subtotal']
+    model = DetalheEntrada
+    extra = 0
+
+@admin.register(Entrada)
+class EntradaAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'data',)
+    readonly_fields = ['_total']
+    date_hierarchy = 'created'
+    list_filter = ('data',)
+    inlines = [EntradaDetailInline]
+#=================================#
 

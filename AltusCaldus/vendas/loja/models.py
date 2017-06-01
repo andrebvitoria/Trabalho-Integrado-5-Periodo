@@ -36,6 +36,17 @@ class Produto(TimeStampedModel):
     def __str__(self):
         return self.nome
 
+    
+    def subtraiEstoque(self, qtd):
+        new_qtd = self.qtd - qtd
+
+        if new_qtd < 0:
+            return False
+
+        self.qtd = new_qtd
+        self.save()
+        return True
+
 
 class Cantina(Produto):
     pass
@@ -115,27 +126,32 @@ class Venda(TimeStampedModel):
     cliente = models.ForeignKey(Cliente, verbose_name='Cliente', null=True, blank=True)
     vendedor = models.ForeignKey('auth.User', verbose_name='Vendedor')
     data = models.DateTimeField('vendido em', auto_now_add=True, auto_now=False, blank=True)
-    total = models.DecimalField('Valor R$', max_digits=6, decimal_places=2, default=0)
+    total = models.DecimalField('Total R$', max_digits=6, decimal_places=2, default=0)
     desconto = models.DecimalField('Desconto R$',max_digits=6, decimal_places=2, default=0)
-
+    
 
     def __str__(self):
         return str(self.data)
 
-
+    @property    
     def _total(self):
         qs = self.venda_det.filter(venda=self.pk).values_list('preco','quantidade') or 0
         t = 0 if isinstance(qs, int) else sum(map(lambda q: q[0]*q[1], qs))
-        setattr(self,'total', t )
         return "R$ %s" % number_format(t, 2)
 
 
+    def calcula_troco(self, total, valor):
+        if pago < _total:
+            return 'Iválido'
+        else:
+            return pago-total
 
+    
         
 class DetalheVenda(TimeStampedModel):
     produto = models.ForeignKey(Produto, verbose_name='Produto')
     venda = models.ForeignKey(Venda, verbose_name='Venda', related_name='venda_det')
-    preco = models.DecimalField(verbose_name ='Preco', max_digits=6, decimal_places=2, default=25)
+    preco = models.DecimalField(verbose_name ='Preco', max_digits=6, decimal_places=2, default=0)
     quantidade = models.DecimalField(verbose_name ='Quantidade', max_digits=6, decimal_places=0, default=1)
     
 
@@ -145,16 +161,74 @@ class DetalheVenda(TimeStampedModel):
     
     @property
     def subtotal(self):
-        return self.preco*self.quantidade
+        return self.produto.preco*self.quantidade
     
 
     def subtotal_formated(self):
         return "R$ %s" % number_format(self.sub, 2)
 
+    def save(self):    
+        try:
+            detalhe_entrada = DetalheEntrada.objects.get(pk=self.pk)
+            val = self.quantidade - detalhe_entrada.quantidade
+            if self.produto.subtraiEstoque(val):
+                super().save()
+        except:
+            if self.produto.subtraiEstoque(self.quantidade):
+                super().save()
+
+        self.preco = self.produto.preco * self.quantidade
+        super().save()
     
 
-    
-    
-    
+
+#=================================={Entradas}================================#
+
+class Entrada(TimeStampedModel):
+    total = models.Empty()
+    data = models.DateTimeField('Comprado em', auto_now_add=True, auto_now=False)
+
+    class Meta:
+        verbose_name = 'Entrada'
+        verbose_name_plural = 'Entradas'
 
 
+    def __str__(self):
+        return self.data
+
+    def _total(self):
+        qs = self.venda_det.filter(venda=self.pk).values_list('valor','quantidade') or 0
+        t = 0 if isinstance(qs, int) else sum(map(lambda q: q[0]*q[1], qs))
+        setattr(self,'total', t )
+        return "R$ %s" % number_format(t, 2)
+
+
+class DetalheEntrada(TimeStampedModel):
+    entrada = models.ForeignKey(Entrada, related_name='Entrada_det')
+    produto = models.ForeignKey(Prancha, verbose_name='Produto')
+    valor = models.DecimalField('Valor do item', max_digits=6, decimal_places=2, default=0)
+    quantidade = models.DecimalField(verbose_name ='Quantidade', max_digits=6, decimal_places=0, default=1)
+
+    def _qtd(self, value):
+        self.quantidade = value
+    
+    @property
+    def subtotal(self):
+        return self.valor*self.quantidade
+    
+
+    def subtotal_formated(self):
+        return "R$ %s" % number_format(self.sub, 2)
+        
+        
+    def save(self):
+        try:
+            detalhe_entrada = DetalheEntrada.objects.get(pk=self.pk)
+            val = self.quantidade - detalhe_entrada.quantidade
+            if self.produto.subtraiEstoque(val):
+                super().save()
+        except:
+            if self.produto.subtraiEstoque(self.quantidade):
+                super().save()
+
+    
