@@ -48,6 +48,19 @@ class Produto(TimeStampedModel):
         return True
 
 
+    def aumentaEstoque(self, qtd):
+        new_qtd = self.qtd + qtd
+
+        self.qtd = new_qtd
+        self.save()
+        return True
+
+    def atualizaPreco(self, preco):
+        self.preco = preco
+        self.save()
+        return True
+
+
 class Cantina(Produto):
     pass
 
@@ -194,7 +207,7 @@ class Entrada(TimeStampedModel):
 
 
     def __str__(self):
-        return self.data
+        return str(self.data)
 
     def _total(self):
         qs = self.venda_det.filter(venda=self.pk).values_list('valor','quantidade') or 0
@@ -205,7 +218,7 @@ class Entrada(TimeStampedModel):
 
 class DetalheEntrada(TimeStampedModel):
     entrada = models.ForeignKey(Entrada, related_name='Entrada_det')
-    produto = models.ForeignKey(Prancha, verbose_name='Produto')
+    produto = models.ForeignKey(Produto, verbose_name='Produto')
     valor = models.DecimalField('Valor do item', max_digits=6, decimal_places=2, default=0)
     quantidade = models.DecimalField(verbose_name ='Quantidade', max_digits=6, decimal_places=0, default=1)
 
@@ -225,10 +238,11 @@ class DetalheEntrada(TimeStampedModel):
         try:
             detalhe_entrada = DetalheEntrada.objects.get(pk=self.pk)
             val = self.quantidade - detalhe_entrada.quantidade
-            if self.produto.subtraiEstoque(val):
+            self.produto.atualizaPreco(self.valor)
+            if self.produto.aumentaEstoque(val):        
                 super().save()
         except:
-            if self.produto.subtraiEstoque(self.quantidade):
+            if self.produto.aumentaEstoque(self.quantidade):
                 super().save()
 
     
