@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.list_produto),
+    url(r'^index', views.template),
 ]
