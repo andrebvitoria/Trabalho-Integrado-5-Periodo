@@ -36,7 +36,11 @@ class Produto(TimeStampedModel):
     def __str__(self):
         return self.nome
 
-    
+    def setValor(self, new_valor):
+        self.valor = new_valor
+        self.save()
+        return True
+
     def subtraiEstoque(self, qtd):
         new_qtd = self.qtd - qtd
 
@@ -47,19 +51,12 @@ class Produto(TimeStampedModel):
         self.save()
         return True
 
-
     def aumentaEstoque(self, qtd):
         new_qtd = self.qtd + qtd
 
         self.qtd = new_qtd
         self.save()
         return True
-
-    def atualizaPreco(self, preco):
-        self.preco = preco
-        self.save()
-        return True
-
 
 class Cantina(Produto):
     pass
@@ -207,27 +204,31 @@ class Entrada(TimeStampedModel):
 
 
     def __str__(self):
-        return str(self.data)
+        return ("ENTRADA: " + str(self.id))
 
     def _total(self):
-        qs = self.venda_det.filter(venda=self.pk).values_list('valor','quantidade') or 0
+        qs = self.Entrada_det.filter(entrada=self.pk).values_list('valor','quantidade') or 0
         t = 0 if isinstance(qs, int) else sum(map(lambda q: q[0]*q[1], qs))
         setattr(self,'total', t )
         return "R$ %s" % number_format(t, 2)
 
 
 class DetalheEntrada(TimeStampedModel):
-    entrada = models.ForeignKey(Entrada, related_name='Entrada_det')
+    entrada = models.ForeignKey(Entrada, verbose_name='Entrada',related_name='Entrada_det')
     produto = models.ForeignKey(Produto, verbose_name='Produto')
     valor = models.DecimalField('Valor do item', max_digits=6, decimal_places=2, default=0)
     quantidade = models.DecimalField(verbose_name ='Quantidade', max_digits=6, decimal_places=0, default=1)
 
     def _qtd(self, value):
         self.quantidade = value
+
+    @property
+    def _Valor_atual(self):
+        return self.produto.preco
     
     @property
     def subtotal(self):
-        return self.valor*self.quantidade
+            return self.valor*self.quantidade
     
 
     def subtotal_formated(self):
@@ -238,11 +239,11 @@ class DetalheEntrada(TimeStampedModel):
         try:
             detalhe_entrada = DetalheEntrada.objects.get(pk=self.pk)
             val = self.quantidade - detalhe_entrada.quantidade
-            self.produto.atualizaPreco(self.valor)
-            if self.produto.aumentaEstoque(val):        
+            if detalhe_entrada.valor != 0:
+                if self.produto.setValor(detalhe_entrada.valor):
+                    super().save()
+            if self.produto.aumentaEstoque(val):
                 super().save()
         except:
             if self.produto.aumentaEstoque(self.quantidade):
                 super().save()
-
-    

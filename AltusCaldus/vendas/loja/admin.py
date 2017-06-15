@@ -60,8 +60,8 @@ class VendaAdmin(admin.ModelAdmin):
 #==========={Entrada}===========#
 
 class EntradaDetailInline(admin.TabularInline):
-    list_display = ['produto','quantidade', 'SubTotal',]
-    readonly_fields = ['subtotal']
+    list_display = ['produto','quantidade', 'SubTotal','valor atual',]
+    readonly_fields = ['subtotal','_Valor_atual']
     model = DetalheEntrada
     extra = 0
 
