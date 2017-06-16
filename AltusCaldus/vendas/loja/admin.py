@@ -13,14 +13,6 @@ admin.site.register(TipoPrancha)
 admin.site.register(Categoria)
 
 
-@admin.register(Cantina)
-class CantinaAdmin(admin.ModelAdmin):
-    list_display = ('nome','descricao','preco','categoria',)
-    date_hierarchy = 'created'
-    list_filter = ('categoria',)
-    search_fields = ('nome',)  
-
-
 @admin.register(Camisa)
 class CamisaAdmin(admin.ModelAdmin):
     list_display = ('nome', 'qtd','cor','tamanho',)
@@ -49,8 +41,8 @@ class DetalheVendaInline(admin.TabularInline):
 @admin.register(Venda)    
 class VendaAdmin(admin.ModelAdmin):
     list_display = ('cliente', 'vendedor',)
-    readonly_fields = ['_total']
-    exclude = ('desconto','total',)
+    readonly_fields = ['Total', 'Troco']
+    exclude = ('total',)
     search_fields = ('cliente',)
     date_hierarchy = 'created'
     list_filter = ('data',)

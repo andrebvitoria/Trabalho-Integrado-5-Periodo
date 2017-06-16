@@ -2,7 +2,8 @@ from django.db import models
 import django.utils.timezone 
 from django.core.urlresolvers import reverse_lazy
 from django.utils.formats import number_format
-
+from django.shortcuts import render_to_response
+# from vendas.servicos.models import Pessoa,Aluno
 
 
 # Create your models here.
@@ -31,10 +32,11 @@ class Produto(TimeStampedModel):
     qtd = models.IntegerField(verbose_name='Quantidade', blank=True, null=True)
     categoria = models.ForeignKey(Categoria, verbose_name='Categoria')
     preco = models.DecimalField(verbose_name ='Preco', max_digits=6, decimal_places=2, default=0)
+    valor_custo = models.DecimalField('Valor de Custo', max_digits=6, decimal_places=2, default=0, null=True)
 
 
     def __str__(self):
-        return self.nome
+        return self.nome +' '+self.descricao
 
     def setValor(self, new_valor):
         self.valor = new_valor
@@ -58,12 +60,6 @@ class Produto(TimeStampedModel):
         self.save()
         return True
 
-class Cantina(Produto):
-    pass
-
-    def __str__(self):
-        return self.nome
-    
 
 class Cor(models.Model):
     descricao = models.CharField('Descrição', max_length=200, null=False)
@@ -79,12 +75,11 @@ class Cor(models.Model):
 
 class Camisa(Produto):
     tamanho =[('PP', 'PP'),('P', 'P'),('M','M'),('G','G'),('GG','GG')]
-    valor_custo = models.DecimalField('Valor de Custo', max_digits=6, decimal_places=2, default=0)
     tamanho = models.CharField('Tamanho', max_length=2, choices=tamanho)
     cor = models.ForeignKey(Cor, verbose_name='Cor')
 
     def __str__(self):
-        return self.descricao
+        return self.nome +' - '+str(self.cor)+' -'+self.tamanho
 
     def get_subtotal(self):
         return self.valor_venda
@@ -106,7 +101,6 @@ class Prancha(Produto):
     altura = models.DecimalField('Altura', max_digits=6, decimal_places=2, default=0)
     litragem = models.DecimalField('Litragem', max_digits=6, decimal_places=2, default=0)
     tipo_prancha = models.ForeignKey(TipoPrancha, verbose_name='Tipo de Prancha')
-    valor_custo = models.DecimalField('Valor de Custo', max_digits=6, decimal_places=2, default=0)
     
 
     class Meta:
@@ -136,25 +130,28 @@ class Venda(TimeStampedModel):
     cliente = models.ForeignKey(Cliente, verbose_name='Cliente', null=True, blank=True)
     vendedor = models.ForeignKey('auth.User', verbose_name='Vendedor')
     data = models.DateTimeField('vendido em', auto_now_add=True, auto_now=False, blank=True)
-    total = models.DecimalField('Total R$', max_digits=6, decimal_places=2, default=0)
     desconto = models.DecimalField('Desconto R$',max_digits=6, decimal_places=2, default=0)
-    
+    valor_pago = models.DecimalField('Pagamento R$',max_digits=6, decimal_places=2, default=0)
 
     def __str__(self):
         return str(self.data)
 
+
     @property    
-    def _total(self):
+    def Total(self):
         qs = self.venda_det.filter(venda=self.pk).values_list('preco','quantidade') or 0
         t = 0 if isinstance(qs, int) else sum(map(lambda q: q[0]*q[1], qs))
-        return "R$ %s" % number_format(t, 2)
+        return "R$ " + number_format(t, 2)
 
-
-    def calcula_troco(self, total, valor):
-        if pago < _total:
-            return 'Iválido'
+    
+    
+    def Troco(self):  # FICA RUIM QUANDO EH O PRIMEIRO PRODUTO
+        qs = self.venda_det.filter(venda=self.pk).values_list('preco','quantidade') or 0
+        t = 0 if isinstance(qs, int) else sum(map(lambda q: q[0]*q[1], qs))
+        if self.valor_pago < t:
+            return "VALOR ABAIXO DO TOTAL"  #TODO: INSERIR UM POPUP AQUI
         else:
-            return pago-total
+            return self.valor_pago-(t-self.desconto)
 
     
         
@@ -187,7 +184,7 @@ class DetalheVenda(TimeStampedModel):
             if self.produto.subtraiEstoque(self.quantidade):
                 super().save()
 
-        self.preco = self.produto.preco * self.quantidade
+        self.preco = self.produto.preco
         super().save()
     
 
@@ -239,9 +236,9 @@ class DetalheEntrada(TimeStampedModel):
         try:
             detalhe_entrada = DetalheEntrada.objects.get(pk=self.pk)
             val = self.quantidade - detalhe_entrada.quantidade
-            if detalhe_entrada.valor != 0:
-                if self.produto.setValor(detalhe_entrada.valor):
-                    super().save()
+            #if detalhe_entrada.valor != 0:   ESSE IF QUE TAVA DANDO TRETA
+            if self.produto.setValor(detalhe_entrada.valor):
+                super().save()
             if self.produto.aumentaEstoque(val):
                 super().save()
         except:

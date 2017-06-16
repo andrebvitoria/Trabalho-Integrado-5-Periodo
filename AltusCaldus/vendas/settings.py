@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'bootstrapform',
     'widget_tweaks',
     'django_extensions',
+    'colorfield',
     # my apps
     'vendas.servicos',
     'vendas.loja',
@@ -91,7 +92,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'altuscaldus',
         'USER': 'postgres',
-        'PASSWORD': 'ifes2017',
+        'PASSWORD': '123123',
         'HOST': 'localhost',
         'PORT': '5432',
     }
