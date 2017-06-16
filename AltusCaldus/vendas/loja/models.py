@@ -9,8 +9,8 @@ from django.shortcuts import render_to_response
 # Create your models here.
 
 class TimeStampedModel(models.Model):
-    created = models.DateTimeField('criado em', auto_now_add=True, auto_now=False)
-    modified = models.DateTimeField('modificado em', auto_now_add=False, auto_now=True)
+    criado = models.DateTimeField('criado em', auto_now_add=True, auto_now=False)
+    modificado = models.DateTimeField('modificado em', auto_now_add=False, auto_now=True)
 
     # Colocar autor
     class Meta:
@@ -25,7 +25,7 @@ class Categoria(TimeStampedModel):
     def __str__(self):
         return self.descricao
 
-
+# Como fica a entrada se add um produto por aqui ?
 class Produto(TimeStampedModel):
     nome = models.CharField('Nome', max_length=200)
     descricao = models.CharField('Descricao', max_length=200, blank = True, null=True)
@@ -39,7 +39,7 @@ class Produto(TimeStampedModel):
         return self.nome +' '+self.descricao
 
     def setValor(self, new_valor):
-        self.valor = new_valor
+        self.preco = new_valor
         self.save()
         return True
 
@@ -193,7 +193,6 @@ class DetalheVenda(TimeStampedModel):
 
 class Entrada(TimeStampedModel):
     total = models.Empty()
-    data = models.DateTimeField('Comprado em', auto_now_add=True, auto_now=False)
 
     class Meta:
         verbose_name = 'Entrada'
@@ -236,11 +235,18 @@ class DetalheEntrada(TimeStampedModel):
         try:
             detalhe_entrada = DetalheEntrada.objects.get(pk=self.pk)
             val = self.quantidade - detalhe_entrada.quantidade
-            #if detalhe_entrada.valor != 0:   ESSE IF QUE TAVA DANDO TRETA
-            if self.produto.setValor(detalhe_entrada.valor):
-                super().save()
+            #if detalhe_entrada.valor != 0:  
+            # if self.produto.setValor(self.valor):
+            #     super().save()
+            
             if self.produto.aumentaEstoque(val):
                 super().save()
+
+            self.produto.preco = self.valor
+            super().save()
         except:
             if self.produto.aumentaEstoque(self.quantidade):
                 super().save()
+
+            self.produto.preco = self.valor
+            super().save()

@@ -16,7 +16,7 @@ admin.site.register(Categoria)
 @admin.register(Camisa)
 class CamisaAdmin(admin.ModelAdmin):
     list_display = ('nome', 'qtd','cor','tamanho',)
-    date_hierarchy = 'created'
+    date_hierarchy = 'criado'
     list_filter = ('cor','tamanho','descricao')
 
 
@@ -24,7 +24,7 @@ class CamisaAdmin(admin.ModelAdmin):
 @admin.register(Produto)
 class ProdutoAdmin(admin.ModelAdmin):
     list_display = ('nome','qtd','preco','categoria',)
-    date_hierarchy = 'created'
+    date_hierarchy = 'criado'
     list_filter = ('categoria',)
     search_fields = ('nome',)  
 
@@ -44,7 +44,7 @@ class VendaAdmin(admin.ModelAdmin):
     readonly_fields = ['Total', 'Troco']
     exclude = ('total',)
     search_fields = ('cliente',)
-    date_hierarchy = 'created'
+    date_hierarchy = 'criado'
     list_filter = ('data',)
     inlines = [DetalheVendaInline]
     
@@ -59,10 +59,10 @@ class EntradaDetailInline(admin.TabularInline):
 
 @admin.register(Entrada)
 class EntradaAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'data',)
+    list_display = ('__str__', 'criado',)
     readonly_fields = ['_total']
-    date_hierarchy = 'created'
-    list_filter = ('data',)
+    date_hierarchy = 'criado'
+    list_filter = ('criado',)
     inlines = [EntradaDetailInline]
 #=================================#
 
