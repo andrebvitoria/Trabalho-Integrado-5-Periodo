@@ -2,7 +2,7 @@ from django.db import models
 from django.core.urlresolvers import reverse_lazy
 from django.utils.formats import number_format
 
-# Classe com datas de criação e modificação da classe #
+# Classe com datas de criacao e modificacao da classe 
 class TimeStampedModel(models.Model):
     created = models.DateTimeField('criado em', auto_now_add=True, auto_now=False)
     modified = models.DateTimeField('modificado em', auto_now_add=False, auto_now=True)
