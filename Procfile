@@ -1,2 +1,2 @@
 release: python AltusCaldus/manage.py migrate
-web: gunicorn vendas.wsgi --log-file -
+web: gunicorn --pythonpath AltusCaldus/vendas vendas.wsgi --log-file -
