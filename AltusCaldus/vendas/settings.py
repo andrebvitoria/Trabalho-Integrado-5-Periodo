@@ -1,5 +1,6 @@
 import os
 from decouple import config, Csv
+import dj_database_url
 from dj_database_url import parse as dburl
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -22,7 +23,7 @@ SECRET_KEY = '%7(fd!s69&=j%m-v!i47@6*3a)ci^apqeec78*zo=%4z=@_ul2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost',]
+ALLOWED_HOSTS = ['localhost','altuscaldus.herokuapp.com',]
 
 
 # Application definition
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     'vendas.servicos',
     'vendas.loja',
     'behave_django',
+    'gunicorn',
 ]
 
 MIDDLEWARE = [
@@ -117,7 +119,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
@@ -137,6 +140,13 @@ USE_THOUSAND_SEPARATOR = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+ 
+STATICFILES_DIRS = (
+     os.path.join(BASE_DIR, 'static'),
+
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 LOGIN_URL = '/admin/login/'
