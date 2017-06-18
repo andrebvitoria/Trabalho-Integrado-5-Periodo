@@ -14,7 +14,7 @@ class TimeStampedModel(models.Model):
 class Pessoa(TimeStampedModel):
     genero_list = [('M', 'Masculino'), ('F', 'Feminino')]
     nome = models.CharField('Nome', max_length=200)
-    genero = models.CharField('gênero', max_length=1, choices=genero_list)
+    genero = models.CharField('genero', max_length=1, choices=genero_list)
     data_nascimento = models.DateField('Nascimento')
     cpf = models.CharField('CPF', max_length=11)
     email = models.EmailField('e-mail', unique=True)
@@ -72,7 +72,7 @@ class Servico(TimeStampedModel):
 #================================{Guarderia}================================#
 class Item(models.Model):
     nome = models.CharField('Item', max_length=100, null=False)
-    descricao = models.CharField('Descrição', max_length=200, null=False)
+    descricao = models.CharField('Descricao', max_length=200, null=False)
 
     class Meta:
         verbose_name = 'Item'
@@ -113,7 +113,7 @@ class DetalheGuarderia(models.Model):
 
 #================================{Aluguel}================================#
 class TipoPrancha(TimeStampedModel):
-    descricao = models.CharField('Descrição', max_length=200, null=False)
+    descricao = models.CharField('Descricao', max_length=200, null=False)
 
     class Meta:
         verbose_name = 'Tipo de Prancha'
@@ -123,7 +123,7 @@ class TipoPrancha(TimeStampedModel):
         return self.descricao
 
 class Prancha(TimeStampedModel):
-    descricao = models.CharField('Descrição', max_length=200, null=False)
+    descricao = models.CharField('Descricao', max_length=200, null=False)
     altura = models.DecimalField('Altura', max_digits=6, decimal_places=2, default=0)
     litragem = models.DecimalField('Litragem', max_digits=6, decimal_places=2, default=0)
     tipo_prancha = models.ForeignKey(TipoPrancha, verbose_name='Tipo de Prancha')
