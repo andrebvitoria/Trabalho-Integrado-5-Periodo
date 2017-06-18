@@ -62,7 +62,7 @@ class Produto(TimeStampedModel):
 
 
 class Cor(models.Model):
-    descricao = models.CharField('Descrição', max_length=200, null=False)
+    descricao = models.CharField('Descricao', max_length=200, null=False)
 
     class Meta:
         verbose_name = 'Cor'
@@ -86,7 +86,7 @@ class Camisa(Produto):
 
 
 class TipoPrancha(TimeStampedModel):
-    descricao = models.CharField('Descrição', max_length=200, null=False)
+    descricao = models.CharField('Descricao', max_length=200, null=False)
 
     class Meta:
         verbose_name = 'Tipo de Prancha'
