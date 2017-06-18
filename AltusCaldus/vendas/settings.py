@@ -86,6 +86,10 @@ default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {
     'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
 }
+'''
+DATABASES = {
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+}
 
 '''
 DATABASES = {
@@ -98,7 +102,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
+'''
 
 
 # Password validation
