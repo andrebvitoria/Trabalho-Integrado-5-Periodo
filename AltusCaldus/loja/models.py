@@ -131,7 +131,7 @@ class Venda(TimeStampedModel):
     vendedor = models.ForeignKey('auth.User', verbose_name='Vendedor')
     data = models.DateTimeField('vendido em', auto_now_add=True, auto_now=False, blank=True)
     desconto = models.DecimalField('Desconto R$',max_digits=6, decimal_places=2, default=0)
-    valor_pago = models.DecimalField('Pagamento R$',max_digits=6, decimal_places=2, default=0)
+    valor_pago = models.DecimalField('Pagamento R$',max_digits=6, decimal_places=2, default=0.0)
 
     def __str__(self):
         return str(self.data)

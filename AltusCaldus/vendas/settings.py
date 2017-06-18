@@ -1,6 +1,7 @@
 import os
 from decouple import config, Csv
-from dj_database_url import parse as dburl
+import dj_database_url
+#from dj_database_url import parse as dburl
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,7 +23,7 @@ SECRET_KEY = '%7(fd!s69&=j%m-v!i47@6*3a)ci^apqeec78*zo=%4z=@_ul2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost',]
+ALLOWED_HOSTS = ['localhost','altuscaldus.herokuapp.com',]
 
 
 # Application definition
@@ -38,11 +39,11 @@ INSTALLED_APPS = [
     'bootstrapform',
     'widget_tweaks',
     'django_extensions',
-    'colorfield',
     # my apps
-    'vendas.servicos',
-    'vendas.loja',
+    'servicos',
+    'loja',
     'behave_django',
+    'gunicorn',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'vendas.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-
+'''
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {
     'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
@@ -97,7 +98,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-'''
+
 
 
 # Password validation
@@ -139,5 +140,11 @@ USE_THOUSAND_SEPARATOR = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 LOGIN_URL = '/admin/login/'
