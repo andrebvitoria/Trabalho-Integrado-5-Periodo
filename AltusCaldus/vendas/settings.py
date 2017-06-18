@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'bootstrapform',
     'widget_tweaks',
     'django_extensions',
-    'colorfield',
     # my apps
     'vendas.servicos',
     'vendas.loja',
