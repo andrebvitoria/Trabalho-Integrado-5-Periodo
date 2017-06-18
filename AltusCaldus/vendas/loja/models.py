@@ -235,18 +235,18 @@ class DetalheEntrada(TimeStampedModel):
         try:
             detalhe_entrada = DetalheEntrada.objects.get(pk=self.pk)
             val = self.quantidade - detalhe_entrada.quantidade
+            #if detalhe_entrada.valor != 0:  
+            # if self.produto.setValor(self.valor):
+            #     super().save()
             
-            self.produto.preco = self.valor
-            super().save()
-
             if self.produto.aumentaEstoque(val):
                 super().save()
 
-            
-        except:
-            
             self.produto.preco = self.valor
             super().save()
-            
+        except:
             if self.produto.aumentaEstoque(self.quantidade):
                 super().save()
+
+            self.produto.preco = self.valor
+            super().save()
