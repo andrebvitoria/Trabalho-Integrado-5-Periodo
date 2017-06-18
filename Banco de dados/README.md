@@ -92,15 +92,15 @@
 
 #### Função 1
  - Essa função tem o objetivo de aumentar o valor do serviço informado.
- - Função: [Aumenta Valor Serviços](https://github.com/andrebvitoria/Trabalho-Integrado-5-
+ - Função: [Aumenta Valor Serviços](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/Functions/aumenta_valor_servico.sql)<br>
+ 
+`INSERT INTO GUARDERIA (data,valor,desconto,id_vendedor,id_aluno,vencimento) VALUES ('2017-05-28',30,0,41404,55862,'2017-06-28');`
 
 `SELECT aumenta_valor_guarderia(500002, 10);`
 
 `SELECT * FROM guarderia WHERE id_guarderia = 500002;`
 
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/function_aumenta_valor_servico.PNG)<br>Periodo/blob/master/Banco%20de%20dados/Functions/aumenta_valor_servico.sql)<br>
- 
-`INSERT INTO GUARDERIA (data,valor,desconto,id_vendedor,id_aluno,vencimento) VALUES ('2017-05-28',30,0,41404,55862,'2017-06-28');`
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/function_aumenta_valor_servico.PNG)<br>
 
 
 #### Função 2
@@ -128,14 +128,10 @@
  - Trigger: [limite_valor_custo_produto](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/Triggers/limite_valor_custo_produto.sql)<br>
  
  'INSERT INTO CAMISA VALUES('CAMISA MOULLIN',100,1,1,1,1,10);'
- 
- ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/loja/CUSTO_MAIOR_VENDA.png)<br>
 
 #### Trigger 3
  - Essa trigger impõe que o valor dos produtos deve ser maior que zero.
  - Trigger: [valor_venda_produto_minimo](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/Triggers/valor_venda_produto_minimo.sql)<br>
  
  'INSERT INTO CAMISA VALUES('CAMISA MOULLIN',0,1,1,1,1,0);'
- 
- ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/loja/VENDA_MAIOR_ZERO.png)<br>
 
