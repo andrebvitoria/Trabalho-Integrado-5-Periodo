@@ -103,7 +103,7 @@ class Guarderia(Servico):
             t = 0
         return "R$ %s" % number_format(t, 2)
 
-class DetalheGuarderia(models.Model):
+class ItemGuarderia(models.Model):
     guarderia = models.ForeignKey(Guarderia, related_name='guarderia_det')
     item = models.ForeignKey(Item, verbose_name='itens')
     valor = models.DecimalField('Valor do item', max_digits=6, decimal_places=2, default=0)
@@ -156,7 +156,7 @@ class Aluguel(Servico):
 
     valor = property(valor_total)
 
-class DetalheAluguel(models.Model):
+class ItemAluguel(models.Model):
     aluguel = models.ForeignKey(Aluguel, related_name='aluguel_det')
     prancha = models.ForeignKey(Prancha,verbose_name='pranchas')
     valor = models.DecimalField('Valor do item', max_digits=6, decimal_places=2, default=0)
@@ -204,7 +204,7 @@ class Aula(Servico):
 
 
 
-class DetalheAula(models.Model):
+class ItemAula(models.Model):
 
     aula = models.ForeignKey(Aula, related_name='aula_det')
     aula_marcada = models.ForeignKey(AulaMarcada, related_name='aula_marcada_det')

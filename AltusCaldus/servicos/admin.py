@@ -20,7 +20,7 @@ admin.site.register(Item)
 class GuarderiaDetailInline(admin.TabularInline):
     list_display = ['item']
     readonly_fields = ['get_subtotal']
-    model = DetalheGuarderia
+    model = ItemGuarderia
     extra = 0
 
 @admin.register(Guarderia)
@@ -39,7 +39,7 @@ admin.site.register(TipoPrancha)
 class AluguelDetailInline(admin.TabularInline):
     list_display = ['prancha']
     readonly_fields = ['get_subtotal']
-    model = DetalheAluguel
+    model = ItemAluguel
     extra = 0
 
 @admin.register(Aluguel)
@@ -58,7 +58,7 @@ admin.site.register(AulaMarcada)
 class AulaDetailInline(admin.TabularInline):
     list_display = ['aula', 'professor']
     readonly_fields = ['get_subtotal']
-    model = DetalheAula
+    model = ItemAula
     extra = 0
 
 @admin.register(Aula)

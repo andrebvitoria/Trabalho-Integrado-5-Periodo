@@ -10,11 +10,11 @@ class GuarderiaTest(TestCase):
         i = Item.objects.create(nome='prancha', descricao='azul')
 
         self.g1 = Guarderia.objects.create(cliente=c, vendedor=v, data='2017-05-25', vencimento = '2017-05-25', desconto = 5)
-        self.det1 = DetalheGuarderia.objects.create(item=i, valor=50, guarderia=self.g1)
-        self.det2 = DetalheGuarderia.objects.create(item=i, valor=30, guarderia=self.g1)
+        self.det1 = ItemGuarderia.objects.create(item=i, valor=50, guarderia=self.g1)
+        self.det2 = ItemGuarderia.objects.create(item=i, valor=30, guarderia=self.g1)
 
         self.g2 = Guarderia.objects.create(cliente=c, vendedor=v, data='2017-05-25', vencimento='2017-05-25', desconto = 70)
-        self.det3 = DetalheGuarderia.objects.create(item=i, valor=30, guarderia=self.g2)
+        self.det3 = ItemGuarderia.objects.create(item=i, valor=30, guarderia=self.g2)
 
 
     def testSubTotal(self):
@@ -36,11 +36,11 @@ class AluguelTest(TestCase):
         p = Prancha.objects.create(descricao='azul',altura=3.5, litragem = 2.8,tipo_prancha=tp)
 
         self.a1 = Aluguel.objects.create(cliente=c, vendedor=v, data='2017-05-25', desconto = -5)
-        self.det1 = DetalheAluguel.objects.create(prancha=p, valor=50, aluguel=self.a1)
-        self.det2 = DetalheAluguel.objects.create(prancha=p, valor=30, aluguel=self.a1)
+        self.det1 = ItemAluguel.objects.create(prancha=p, valor=50, aluguel=self.a1)
+        self.det2 = ItemAluguel.objects.create(prancha=p, valor=30, aluguel=self.a1)
 
         self.a2 = Aluguel.objects.create(cliente=c, vendedor=v, data='2017-05-25', desconto = 70)
-        self.det3 = DetalheAluguel.objects.create(prancha=p, valor=30, aluguel=self.a2)
+        self.det3 = ItemAluguel.objects.create(prancha=p, valor=30, aluguel=self.a2)
 
 
     def testSubTotal(self):
