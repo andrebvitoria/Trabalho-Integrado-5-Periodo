@@ -1,21 +1,26 @@
 from django.contrib import admin
-#from .models import Customer, Seller, Brand, Product, Sale, SaleDetail
 from .models import *
+from django.contrib import messages
 
-#==========={Pessoas}===========#
+
+# ==========={Pessoas}=========== #
 @admin.register(Aluno)
 class AlunoAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'cpf', 'email', 'telefone', 'celular', 'emergencia', 'data_nascimento', 'created')
     search_fields = ('nome',)
 
+
 @admin.register(Professor)
 class ProfessorAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'cpf', 'email', 'telefone', 'celular', 'emergencia', 'data_nascimento', 'created')
     search_fields = ('nome',)
-#===============================#
 
-#==========={Guarderia}===========#
+
+# =============================== #
+
+# ==========={Guarderia}=========== #
 admin.site.register(Item)
+
 
 class GuarderiaDetailInline(admin.TabularInline):
     list_display = ['item']
@@ -23,18 +28,29 @@ class GuarderiaDetailInline(admin.TabularInline):
     model = ItemGuarderia
     extra = 0
 
+
 @admin.register(Guarderia)
 class GuarderiaAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'data', 'vencimento',)
-    readonly_fields = ['valor_total']
+    readonly_fields = ['valor_total', 'troco']
     date_hierarchy = 'created'
     list_filter = ('cliente',)
     inlines = [GuarderiaDetailInline]
-#=================================#
 
-#============{Aluguel}============#
+    def save_model(self, request, obj, form, change):
+        if obj.save():
+            messages.add_message(request, messages.INFO, 'Guarderia efetuada com Sucesso!')
+        else:
+            messages.add_message(request, messages.ERROR, 'Erro ao efetuar a Guarderia!')
+        return
+
+
+# ================================= #
+
+# ============{Aluguel}============ #
 admin.site.register(Prancha)
 admin.site.register(TipoPrancha)
+
 
 class AluguelDetailInline(admin.TabularInline):
     list_display = ['prancha']
@@ -42,18 +58,29 @@ class AluguelDetailInline(admin.TabularInline):
     model = ItemAluguel
     extra = 0
 
+
 @admin.register(Aluguel)
 class AluguelAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'data',)
-    readonly_fields = ['valor_total']
+    readonly_fields = ['valor_total', 'troco']
     date_hierarchy = 'created'
     list_filter = ('cliente',)
     inlines = [AluguelDetailInline]
-#=================================#
+
+    def save_model(self, request, obj, form, change):
+        if obj.save():
+            messages.add_message(request, messages.INFO, 'Aluguel efetuado com Sucesso!')
+        else:
+            messages.add_message(request, messages.ERROR, 'Erro ao efetuar a Algueul!')
+        return
 
 
-#==========={Aulas}==========#
+# ================================= #
+
+
+# ==========={Aulas}========== #
 admin.site.register(AulaMarcada)
+
 
 class AulaDetailInline(admin.TabularInline):
     list_display = ['aula', 'professor']
@@ -61,56 +88,20 @@ class AulaDetailInline(admin.TabularInline):
     model = ItemAula
     extra = 0
 
+
 @admin.register(Aula)
 class AulaAdmin(admin.ModelAdmin):
     list_display = ('__str__',)
-    readonly_fields = ['valor_total']
+    readonly_fields = ['valor_total', 'troco']
     date_hierarchy = 'created'
     list_filter = ('cliente',)
     inlines = [AulaDetailInline]
-#============================#
 
-'''
-@admin.register(Customer)
-class CustomerAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'cpf', 'email', 'telefone', 'celular', 'emergencia', 'data_nascimento', 'created')
-    date_hierarchy = 'created'
-    search_fields = ('nome',)
+    def save_model(self, request, obj, form, change):
+        if obj.save():
+            messages.add_message(request, messages.INFO, 'Venda efetuada com Sucesso!')
+        else:
+            messages.add_message(request, messages.ERROR, 'Erro ao efetuar a venda!')
+        return
 
-@admin.register(Seller)
-class SellerAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'internal', 'email',
-                    'phone', 'created', 'commissioned', 'active')
-    date_hierarchy = 'created'
-    search_fields = ('firstname', 'lastname')
-    list_filter = ('internal', 'commissioned', 'active')
-
-
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    ordering = ['product']
-    list_display = (
-        'ncm', 'imported', 'product', 'brand', 'get_price', 'outofline')
-    list_filter = ('outofline', 'brand',)
-    search_fields = ('product',)
-
-
-class SaleDetailInline(admin.TabularInline):
-    list_display = ['product', 'quantity', 'price_sale']
-    readonly_fields = ['get_subtotal']
-    model = SaleDetail
-    extra = 0
-
-
-@admin.register(Sale)
-class SaleAdmin(admin.ModelAdmin):
-    list_display = (
-        '__str__', 'customer', 'created', 'get_itens', 'get_total')
-    readonly_fields = ['get_total']
-    date_hierarchy = 'created'
-    list_filter = ('customer',)
-    inlines = [SaleDetailInline]
-
-
-admin.site.register(Brand)
-'''
+# ============================ #

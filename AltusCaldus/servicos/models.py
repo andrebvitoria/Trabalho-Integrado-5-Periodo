@@ -2,15 +2,18 @@ from django.db import models
 from django.core.urlresolvers import reverse_lazy
 from django.utils.formats import number_format
 
+
 # Classe com datas de criacao e modificacao da classe 
 class TimeStampedModel(models.Model):
     created = models.DateTimeField('criado em', auto_now_add=True, auto_now=False)
     modified = models.DateTimeField('modificado em', auto_now_add=False, auto_now=True)
-    #Colocar autor
+
+    # Colocar autor
     class Meta:
         abstract = True
 
-#================================{Pessoas}================================#
+
+# ================================{Pessoas}================================ #
 class Pessoa(TimeStampedModel):
     genero_list = [('M', 'Masculino'), ('F', 'Feminino')]
     nome = models.CharField('Nome', max_length=200)
@@ -22,13 +25,13 @@ class Pessoa(TimeStampedModel):
     celular = models.CharField('Celular', max_length=18)
     emergencia = models.CharField('Emergencia', max_length=18)
 
-
     class Meta:
         abstract = True
         ordering = ['nome']
 
     def __str__(self):
         return self.nome
+
     full_name = property(__str__)
 
 
@@ -43,6 +46,7 @@ class Aluno(Pessoa):
     def get_customer_url(self):
         return "/customer/%i" % self.id
 
+
 class Professor(Pessoa):
     pass
 
@@ -54,22 +58,46 @@ class Professor(Pessoa):
     def get_customer_url(self):
         return "/customer/%i" % self.id
 
-#================================{Servicos}================================#
+
+# ================================{Servicos}================================ #
 class Servico(TimeStampedModel):
     vendedor = models.ForeignKey('auth.User', verbose_name='Vendedor')
     cliente = models.ForeignKey(Aluno, verbose_name='Cliente')
     data = models.DateField('Data')
-    valor = models.DecimalField('Valor R$', max_digits=6, decimal_places=2, default=0)
+    valor_pago = models.DecimalField('Pagamento R$', max_digits=6, decimal_places=2, default=40)
     desconto = models.DecimalField('Desconto R$', max_digits=6, decimal_places=2, default=0)
 
     class Meta:
         abstract = True
 
-    def valor_total(self):
+    def calcula_total(self):
         pass
         return
 
-#================================{Guarderia}================================#
+    def valor_total(self):
+        return "R$ %s" % number_format(self.calcula_total(), 2)
+
+    def calcular_troco(self):
+        total = self.calcula_total()
+        return self.valor_pago - total
+
+    def valor_troco(self):
+        return "R$ %s" % number_format(self.calcular_troco(), 2)
+
+    troco = property(valor_troco)
+
+    def save(self):
+        if self.calcular_troco() < 0:
+            return False
+        else:
+            super().save()
+        return True
+
+    def __str__(self):
+        return 'Data: ' + self.data.__str__() + '    Cliente: ' + str(self.cliente.nome)
+
+
+# ================================{Guarderia}================================ #
 class Item(models.Model):
     nome = models.CharField('Item', max_length=100, null=False)
     descricao = models.CharField('Descricao', max_length=200, null=False)
@@ -83,25 +111,22 @@ class Item(models.Model):
 
 
 class Guarderia(Servico):
-    valor = models.Empty()
     vencimento = models.DateField()
 
     class Meta:
         verbose_name = 'Guarderia'
         verbose_name_plural = 'Guarderia'
 
-
-    def __str__(self):
-        return self.cliente.nome
-
-    def valor_total(self):
-        qs = self.guarderia_det.filter(guarderia=self.pk).values_list('valor') or 0
+    def calcula_total(self):
+        qs = self.aula_det.filter(aula=self.pk).values_list('valor') or 0
         t = 0 if isinstance(qs, int) else (sum(map(lambda q: q[0], qs)))
         if t > self.desconto:
             t -= self.desconto
         else:
             t = 0
-        return "R$ %s" % number_format(t, 2)
+        return t
+
+
 
 class ItemGuarderia(models.Model):
     guarderia = models.ForeignKey(Guarderia, related_name='guarderia_det')
@@ -111,7 +136,8 @@ class ItemGuarderia(models.Model):
     def get_subtotal(self):
         return self.valor
 
-#================================{Aluguel}================================#
+
+# ================================{Aluguel}================================ #
 class TipoPrancha(TimeStampedModel):
     descricao = models.CharField('Descricao', max_length=200, null=False)
 
@@ -121,6 +147,7 @@ class TipoPrancha(TimeStampedModel):
 
     def __str__(self):
         return self.descricao
+
 
 class Prancha(TimeStampedModel):
     descricao = models.CharField('Descricao', max_length=200, null=False)
@@ -137,34 +164,30 @@ class Prancha(TimeStampedModel):
 
 
 class Aluguel(Servico):
-
     class Meta:
         verbose_name = 'Aluguel'
         verbose_name_plural = 'Alugueis'
 
-    def __str__(self):
-        return self.cliente.nome
-
-    def valor_total(self):
-        qs = self.aluguel_det.filter(aluguel=self.pk).values_list('valor') or 0
+    def calcula_total(self):
+        qs = self.aula_det.filter(aula=self.pk).values_list('valor') or 0
         t = 0 if isinstance(qs, int) else (sum(map(lambda q: q[0], qs)))
         if t > self.desconto:
             t -= self.desconto
         else:
             t = 0
-        return "R$ %s" % number_format(t, 2)
+        return t
 
-    valor = property(valor_total)
 
 class ItemAluguel(models.Model):
     aluguel = models.ForeignKey(Aluguel, related_name='aluguel_det')
-    prancha = models.ForeignKey(Prancha,verbose_name='pranchas')
+    prancha = models.ForeignKey(Prancha, verbose_name='pranchas')
     valor = models.DecimalField('Valor do item', max_digits=6, decimal_places=2, default=0)
 
     def get_subtotal(self):
         return self.valor
 
-#=================================={Aulas}================================#
+
+# =================================={Aulas}================================ #
 class AulaMarcada(TimeStampedModel):
     horario = models.DateTimeField()
 
@@ -180,11 +203,7 @@ class AulaMarcada(TimeStampedModel):
         return aula
 
 
-
 class Aula(Servico):
-    def __str__(self):
-        return self.cliente.nome
-
     class Meta:
         verbose_name = 'Aula'
         verbose_name_plural = 'Aulas'
@@ -198,14 +217,8 @@ class Aula(Servico):
             t = 0
         return t
 
-    def valor_total(self):
-        return "R$ %s" % number_format(self.calcula_total(), 2)
-    valor = property(calcula_total)
-
-
 
 class ItemAula(models.Model):
-
     aula = models.ForeignKey(Aula, related_name='aula_det')
     aula_marcada = models.ForeignKey(AulaMarcada, related_name='aula_marcada_det')
     professor = models.ForeignKey(Professor, related_name='professor_det')
