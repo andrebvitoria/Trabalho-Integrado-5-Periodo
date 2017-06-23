@@ -176,8 +176,8 @@ class DetalheVenda(TimeStampedModel):
 
     def save(self):    
         try:
-            detalhe_entrada = DetalheEntrada.objects.get(pk=self.pk)
-            val = self.quantidade - detalhe_entrada.quantidade
+            detalhe_venda = DetalheVenda.objects.get(pk=self.pk)
+            val = self.quantidade - detalhe_venda.quantidade
             if self.produto.subtraiEstoque(val):
                 super().save()
         except:
