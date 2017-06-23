@@ -81,15 +81,15 @@ WSGI_APPLICATION = 'vendas.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-'''
-default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
-DATABASES = {
-    'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
+
+DATABASES = {  
+    
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
-'''
-DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-}
+
 
 '''
 DATABASES = {

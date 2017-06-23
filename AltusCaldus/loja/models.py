@@ -155,7 +155,7 @@ class Venda(TimeStampedModel):
 
     
         
-class DetalheVenda(TimeStampedModel):
+class ItemVenda(TimeStampedModel):
     produto = models.ForeignKey(Produto, verbose_name='Produto')
     venda = models.ForeignKey(Venda, verbose_name='Venda', related_name='venda_det')
     preco = models.DecimalField(verbose_name ='Preco', max_digits=6, decimal_places=2, default=0)
@@ -176,8 +176,8 @@ class DetalheVenda(TimeStampedModel):
 
     def save(self):    
         try:
-            detalhe_venda = DetalheVenda.objects.get(pk=self.pk)
-            val = self.quantidade - detalhe_venda.quantidade
+            item_venda = ItemVenda.objects.get(pk=self.pk)
+            val = self.quantidade - item_venda.quantidade
             if self.produto.subtraiEstoque(val):
                 super().save()
         except:
@@ -209,7 +209,7 @@ class Entrada(TimeStampedModel):
         return "R$ %s" % number_format(t, 2)
 
 
-class DetalheEntrada(TimeStampedModel):
+class ItemEntrada(TimeStampedModel):
     entrada = models.ForeignKey(Entrada, verbose_name='Entrada',related_name='Entrada_det')
     produto = models.ForeignKey(Produto, verbose_name='Produto')
     valor = models.DecimalField('Valor do item', max_digits=6, decimal_places=2, default=0)
@@ -233,8 +233,8 @@ class DetalheEntrada(TimeStampedModel):
         
     def save(self):
         try:
-            detalhe_entrada = DetalheEntrada.objects.get(pk=self.pk)
-            val = self.quantidade - detalhe_entrada.quantidade
+            item_entrada = ItemEntrada.objects.get(pk=self.pk)
+            val = self.quantidade - item_entrada.quantidade
             
             self.produto.preco = self.valor
             super().save()

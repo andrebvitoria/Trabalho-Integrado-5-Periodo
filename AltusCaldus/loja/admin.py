@@ -30,11 +30,11 @@ class ProdutoAdmin(admin.ModelAdmin):
 
 
 
-class DetalheVendaInline(admin.TabularInline):
+class ItemVendaInline(admin.TabularInline):
     list_display = ('produto', 'quantidade','subtotal')
     exclude = ('preco',)
     readonly_fields = ['subtotal']
-    model = DetalheVenda
+    model = ItemVenda
     extra = 0
 
 
@@ -46,15 +46,15 @@ class VendaAdmin(admin.ModelAdmin):
     search_fields = ('cliente',)
     date_hierarchy = 'criado'
     list_filter = ('data',)
-    inlines = [DetalheVendaInline]
+    inlines = [ItemVendaInline]
     
 
 #==========={Entrada}===========#
 
-class EntradaDetailInline(admin.TabularInline):
+class ItemEntradaInline(admin.TabularInline):
     list_display = ['produto','quantidade', 'SubTotal','valor atual',]
     readonly_fields = ['subtotal','_Valor_atual']
-    model = DetalheEntrada
+    model = ItemEntrada
     extra = 0
 
 @admin.register(Entrada)
@@ -63,6 +63,6 @@ class EntradaAdmin(admin.ModelAdmin):
     readonly_fields = ['_total']
     date_hierarchy = 'criado'
     list_filter = ('criado',)
-    inlines = [EntradaDetailInline]
+    inlines = [ItemEntradaInline]
 #=================================#
 
