@@ -145,13 +145,14 @@ class Venda(TimeStampedModel):
 
     
     
-    def Troco(self):  # FICA RUIM QUANDO EH O PRIMEIRO PRODUTO
+    def Troco(self):  
         qs = self.venda_det.filter(venda=self.pk).values_list('preco','quantidade') or 0
         t = 0 if isinstance(qs, int) else sum(map(lambda q: q[0]*q[1], qs))
-        if self.valor_pago < t:
+        v_final = t-self.desconto
+        if self.valor_pago < v_final:
             return "VALOR ABAIXO DO TOTAL"  #TODO: INSERIR UM POPUP AQUI
         else:
-            return self.valor_pago-(t-self.desconto)
+            return self.valor_pago-(v_final)
 
     
         
