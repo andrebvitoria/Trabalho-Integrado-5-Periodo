@@ -1,0 +1,146 @@
+﻿/* Em construção: */
+
+CREATE TABLE CATEGORIA (
+    descricao varchar(50),
+    id SERIAL PRIMARY KEY
+);
+
+
+CREATE TABLE PRODUTO (
+    id_prod SERIAL PRIMARY KEY,
+    nome VARCHAR(250),
+    valor_venda decimal,
+    quantidade INTEGER,
+    id_categoria INTEGER
+);
+
+
+CREATE TABLE TIPO_CAMISA (
+    id SERIAL PRIMARY KEY,
+    descricao varchar(100)
+);
+
+
+CREATE TABLE COR (
+    id serial PRIMARY KEY,
+    descricao varchar(100)
+);
+
+
+CREATE TABLE TAMANHO (
+    id SERIAL PRIMARY KEY,
+    descricao varchar(250)
+);
+
+
+
+CREATE TABLE TIPO_PRANCHA (
+    descricao varchar(250),
+    id SERIAL PRIMARY KEY
+);
+
+
+CREATE TABLE CAMISA (
+    id SERIAL PRIMARY KEY,
+    id_tipo_camisa INTEGER,
+    id_cor INTEGER,
+    id_tamanho INTEGER
+)INHERITS(PRODUTO);
+
+
+CREATE TABLE PRANCHA (
+    id serial PRIMARY KEY,
+    litragem decimal,
+    altura DECIMAL,
+    id_tipo_prancha INTEGER
+)INHERITS (PRODUTO);
+
+
+
+CREATE TABLE CANTINA (
+    id serial PRIMARY KEY,
+    descricao varchar(250)
+)INHERITS(PRODUTO);
+
+
+
+CREATE TABLE ENTRADA (
+    id SERIAL PRIMARY KEY,
+    data TIMESTAMP
+);
+
+
+CREATE TABLE ITEM_ENTRADA (
+    id SERIAL PRIMARY KEY,
+    id_produto INTEGER,
+    id_entrada INTEGER
+);
+
+
+CREATE TABLE VENDA (
+    data TIMESTAMP,
+    desconto DECIMAL,
+    id SERIAL PRIMARY KEY,
+    id_cliente INTEGER
+);
+
+
+
+CREATE TABLE ITEM_VENDA (
+    quantidade INTEGER,
+    valor_venda decimal,
+    id SERIAL PRIMARY KEY,
+    desconto DECIMAL,
+    id_produto INTEGER,
+    id_venda INTEGER
+);
+
+
+CREATE TABLE CLIENTE (
+    id SERIAL PRIMARY KEY,
+    nome varchar(250)
+);
+ 
+
+ALTER TABLE CAMISA ADD CONSTRAINT FK_CAMISA_1
+    FOREIGN KEY (id_tipo_camisa)
+    REFERENCES TIPO_CAMISA (id);
+ 
+ALTER TABLE CAMISA ADD CONSTRAINT FK_CAMISA_2
+    FOREIGN KEY (id_cor)
+    REFERENCES COR (id);
+ 
+ALTER TABLE CAMISA ADD CONSTRAINT FK_CAMISA_3
+    FOREIGN KEY (id_tamanho)
+    REFERENCES TAMANHO (id);
+ 
+ 
+ALTER TABLE PRANCHA ADD CONSTRAINT FK_PRANCHA_2
+    FOREIGN KEY (id_tipo_prancha)
+    REFERENCES TIPO_PRANCHA (id);
+ 
+
+ 
+ALTER TABLE PRODUTO ADD CONSTRAINT FK_PRODUTO_1
+    FOREIGN KEY (id_categoria)
+    REFERENCES CATEGORIA (id);
+ 
+ALTER TABLE ITEM_ENTRADA ADD CONSTRAINT FK_ITEM_ENTRADA_1
+    FOREIGN KEY (id_produto)
+    REFERENCES PRODUTO (id_prod);
+ 
+ALTER TABLE ITEM_ENTRADA ADD CONSTRAINT FK_ITEM_ENTRADA_2
+    FOREIGN KEY (id_entrada)
+    REFERENCES ENTRADA (id);
+ 
+ALTER TABLE ITEM_VENDA ADD CONSTRAINT FK_ITEM_VENDA_1
+    FOREIGN KEY (id_produto)
+    REFERENCES PRODUTO (id_prod);
+ 
+ALTER TABLE ITEM_VENDA ADD CONSTRAINT FK_ITEM_VENDA_2
+    FOREIGN KEY (id_venda)
+    REFERENCES VENDA (id);
+ 
+ALTER TABLE VENDA ADD CONSTRAINT FK_VENDA_1
+    FOREIGN KEY (id_cliente)
+    REFERENCES CLIENTE (id);
