@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_extensions',
     # my apps
-    'vendas.servicos',
-    'vendas.loja',
+    'servicos',
+    'loja',
     'behave_django',
     'gunicorn',
 ]
@@ -82,10 +82,15 @@ WSGI_APPLICATION = 'vendas.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 '''
-default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
-DATABASES = {
-    'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
+DATABASES = {  
+    
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
+
+
 '''
 
 DATABASES = {
@@ -98,6 +103,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
 
 
 # Password validation
@@ -118,8 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
@@ -139,13 +144,11 @@ USE_THOUSAND_SEPARATOR = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
- 
-STATICFILES_DIRS = (
-     os.path.join(BASE_DIR, 'static'),
-)
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
