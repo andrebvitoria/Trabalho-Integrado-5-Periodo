@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.urlresolvers import reverse_lazy
 from django.utils.formats import number_format
 
 
@@ -36,8 +35,6 @@ class Pessoa(TimeStampedModel):
 
 
 class Aluno(Pessoa):
-    pass
-
     class Meta:
         verbose_name = 'Aluno'
         verbose_name_plural = 'Alunos'
@@ -48,8 +45,6 @@ class Aluno(Pessoa):
 
 
 class Professor(Pessoa):
-    pass
-
     class Meta:
         verbose_name = 'Professor'
         verbose_name_plural = 'Professores'
@@ -64,7 +59,7 @@ class Servico(TimeStampedModel):
     vendedor = models.ForeignKey('auth.User', verbose_name='Vendedor')
     cliente = models.ForeignKey(Aluno, verbose_name='Cliente')
     data = models.DateField('Data')
-    valor_pago = models.DecimalField('Pagamento R$', max_digits=6, decimal_places=2, default=40)
+    valor_pago = models.DecimalField('Pagamento R$', max_digits=6, decimal_places=2, default=0)
     desconto = models.DecimalField('Desconto R$', max_digits=6, decimal_places=2, default=0)
 
     class Meta:
@@ -85,13 +80,6 @@ class Servico(TimeStampedModel):
         return "R$ %s" % number_format(self.calcular_troco(), 2)
 
     troco = property(valor_troco)
-
-    def save(self):
-        if self.calcular_troco() < 0:
-            return False
-        else:
-            super().save()
-        return True
 
     def __str__(self):
         return 'Data: ' + self.data.__str__() + '    Cliente: ' + str(self.cliente.nome)
@@ -118,14 +106,13 @@ class Guarderia(Servico):
         verbose_name_plural = 'Guarderia'
 
     def calcula_total(self):
-        qs = self.aula_det.filter(aula=self.pk).values_list('valor') or 0
+        qs = self.guarderia_det.filter(guarderia=self.pk).values_list('valor') or 0
         t = 0 if isinstance(qs, int) else (sum(map(lambda q: q[0], qs)))
         if t > self.desconto:
             t -= self.desconto
         else:
             t = 0
         return t
-
 
 
 class ItemGuarderia(models.Model):
@@ -169,7 +156,7 @@ class Aluguel(Servico):
         verbose_name_plural = 'Alugueis'
 
     def calcula_total(self):
-        qs = self.aula_det.filter(aula=self.pk).values_list('valor') or 0
+        qs = self.aluguel_det.filter(aluguel=self.pk).values_list('valor') or 0
         t = 0 if isinstance(qs, int) else (sum(map(lambda q: q[0], qs)))
         if t > self.desconto:
             t -= self.desconto
