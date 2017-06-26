@@ -7,10 +7,26 @@ from .models import *
 
 
 admin.site.register(Cor)
-admin.site.register(Cliente)
-admin.site.register(Prancha)
 admin.site.register(TipoPrancha)
 admin.site.register(Categoria)
+
+
+
+
+@admin.register(Cliente)
+class ClienteAdmin(admin.ModelAdmin):
+    list_display = ('nome',)
+    list_filter = ('nome',)
+
+
+
+@admin.register(Prancha)
+class PranchaAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'qtd','tipo_prancha','altura','litragem', 'preco',)
+    date_hierarchy = 'criado'
+    list_filter = ('nome','tipo_prancha',)
+    
+
 
 
 @admin.register(Camisa)
@@ -65,4 +81,3 @@ class EntradaAdmin(admin.ModelAdmin):
     list_filter = ('criado',)
     inlines = [ItemEntradaInline]
 #=================================#
-
