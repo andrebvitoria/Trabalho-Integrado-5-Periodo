@@ -25,8 +25,9 @@ class Categoria(TimeStampedModel):
     def __str__(self):
         return self.descricao
 
-# Como fica a entrada se add um produto por aqui ?
+
 class Produto(TimeStampedModel):
+    imagem = models.ImageField(upload_to = 'static/imagem/')
     nome = models.CharField('Nome', max_length=200)
     descricao = models.CharField('Descricao', max_length=200, blank = True, null=True)
     qtd = models.IntegerField(verbose_name='Quantidade', blank=True, null=True)
@@ -150,7 +151,7 @@ class Venda(TimeStampedModel):
         t = 0 if isinstance(qs, int) else sum(map(lambda q: q[0]*q[1], qs))
         v_final = t-self.desconto
         if self.valor_pago < v_final:
-            return "VALOR ABAIXO DO TOTAL"  #TODO: INSERIR UM POPUP AQUI
+            return "VALOR ABAIXO DO TOTAL"
         else:
             return self.valor_pago-(v_final)
 
