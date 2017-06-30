@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import *
 from django.contrib import messages
+from decimal import Decimal
 
 
 # ==========={Pessoas}=========== #
@@ -38,11 +39,26 @@ class GuarderiaAdmin(admin.ModelAdmin):
     inlines = [GuarderiaDetailInline]
 
     def save_model(self, request, obj, form, change):
-        if obj.save():
-            messages.add_message(request, messages.INFO, 'Guarderia efetuada com Sucesso!')
+        guarderia = obj
+
+        # Verifica se existe requisição com novo valor de pagamento, caso nao tenha usa o armazenado no banco
+        valor_pago = float(request.POST['valor_pago']) if 'valor_pago' in request.POST else guarderia.valor_pago
+        # Verifica se existe requisição com novo valor de desconto caso, caso nao tenha usa o armazenado no banco
+        # Soma desconto com valor pago
+        valor_pago += float(request.POST['desconto']) if 'desconto' in request.POST else valor_pago + guarderia.desconto
+        # Verifica se existe requisição com novos valores de serviço, caso nao tenha usa o armazenado no banco
+        valor_servico = get_valor_itens(request.POST,
+                                        'guarderia_det-#-valor') if 'guarderia_det-0-valor' in request.POST else guarderia.calcula_total()
+
+        if valor_pago < valor_servico:
+            messages.add_message(request, messages.WARNING,
+                                 'Não é Permitido guarderias com valores menores que o minimo, caso seja inserido valor '
+                                 'inferior ao da guarderia o minimo sera inserido por padrão')
+            request.POST['valor_pago'] = str(valor_servico)
+            obj.valor_pago = Decimal(str(valor_servico - float(request.POST['desconto'])))
         else:
-            messages.add_message(request, messages.ERROR, 'Erro ao efetuar a Guarderia!')
-        return
+            messages.add_message(request, messages.INFO, 'Guarderia efetuada com Sucesso!')
+        super().save_model(request, obj, form, change)
 
 
 # ================================= #
@@ -68,11 +84,26 @@ class AluguelAdmin(admin.ModelAdmin):
     inlines = [AluguelDetailInline]
 
     def save_model(self, request, obj, form, change):
-        if obj.save():
-            messages.add_message(request, messages.INFO, 'Aluguel efetuado com Sucesso!')
+        aluguel = obj
+
+        # Verifica se existe requisição com novo valor de pagamento, caso nao tenha usa o armazenado no banco
+        valor_pago = float(request.POST['valor_pago']) if 'valor_pago' in request.POST else aluguel.valor_pago
+        # Verifica se existe requisição com novo valor de desconto caso, caso nao tenha usa o armazenado no banco
+        # Soma desconto com valor pago
+        valor_pago += float(request.POST['desconto']) if 'desconto' in request.POST else valor_pago + aluguel.desconto
+        # Verifica se existe requisição com novos valores de serviço, caso nao tenha usa o armazenado no banco
+        valor_servico = get_valor_itens(request.POST,
+                                        'aluguel_det-#-valor') if 'aluguel_det-0-valor' in request.POST else aluguel.calcula_total()
+
+        if valor_pago < valor_servico:
+            messages.add_message(request, messages.WARNING,
+                                 'Não é Permitido alugueis com valores menores que o minimo, caso seja inserido valor '
+                                 'inferior ao do aluguel o minimo sera inserido por padrão')
+            request.POST['valor_pago'] = str(valor_servico)
+            obj.valor_pago = Decimal(str(valor_servico - float(request.POST['desconto'])))
         else:
-            messages.add_message(request, messages.ERROR, 'Erro ao efetuar a Algueul!')
-        return
+            messages.add_message(request, messages.INFO, 'Aluguel efetuada com Sucesso!')
+        super().save_model(request, obj, form, change)
 
 
 # ================================= #
@@ -98,10 +129,41 @@ class AulaAdmin(admin.ModelAdmin):
     inlines = [AulaDetailInline]
 
     def save_model(self, request, obj, form, change):
-        if obj.save():
-            messages.add_message(request, messages.INFO, 'Venda efetuada com Sucesso!')
+        aula = obj
+
+        # Verifica se existe requisição com novo valor de pagamento, caso nao tenha usa o armazenado no banco
+        valor_pago = float(request.POST['valor_pago']) if 'valor_pago' in request.POST else aula.valor_pago
+        # Verifica se existe requisição com novo valor de desconto caso, caso nao tenha usa o armazenado no banco
+        # Soma desconto com valor pago
+        valor_pago += float(request.POST['desconto']) if 'desconto' in request.POST else valor_pago + aula.desconto
+        # Verifica se existe requisição com novos valores de serviço, caso nao tenha usa o armazenado no banco
+        valor_servico = get_valor_itens(request.POST,
+                                        'aula_det-#-valor') if 'aula_det-0-valor' in request.POST else aula.calcula_total()
+
+        if valor_pago < valor_servico:
+            messages.add_message(request, messages.WARNING,
+                                 'Não é Permitido vendas com valores menores que o minimo, caso seja inserido valor '
+                                 'inferior ao da venda o minimo sera inserido por padrão')
+            request.POST['valor_pago'] = str(valor_servico)
+            obj.valor_pago = Decimal(str(valor_servico - float(request.POST['desconto'])))
         else:
-            messages.add_message(request, messages.ERROR, 'Erro ao efetuar a venda!')
-        return
+            messages.add_message(request, messages.INFO, 'Venda efetuada com Sucesso!')
+        super().save_model(request, obj, form, change)
+
+
+# ============================ #
+
+# =={Metodos Compartilhados}== #
+def get_valor_itens(POST, key):
+    valor = 0.0
+    index = 0
+    new_key = key.replace('#', str(index))
+    while new_key in POST:
+        valor += float(POST[new_key])
+
+        index += 1
+        new_key = key.replace('#', str(index))
+    return valor
+
 
 # ============================ #
