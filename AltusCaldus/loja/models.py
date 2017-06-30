@@ -25,8 +25,9 @@ class Categoria(TimeStampedModel):
     def __str__(self):
         return self.descricao
 
-# Como fica a entrada se add um produto por aqui ?
+
 class Produto(TimeStampedModel):
+    imagem = models.ImageField(upload_to = 'loja/static/imagem/', null=True)
     nome = models.CharField('Nome', max_length=200)
     descricao = models.CharField('Descricao', max_length=200, blank = True, null=True)
     qtd = models.IntegerField(verbose_name='Quantidade', blank=True, null=True)
@@ -44,7 +45,7 @@ class Produto(TimeStampedModel):
         return True
 
     def subtraiEstoque(self, qtd):
-        new_qtd = self.qtd - qtd
+        new_qtd = self.qtd - int(qtd)
 
         if new_qtd < 0:
             return False
@@ -54,7 +55,7 @@ class Produto(TimeStampedModel):
         return True
 
     def aumentaEstoque(self, qtd):
-        new_qtd = self.qtd + qtd
+        new_qtd = self.qtd + int(qtd)
 
         self.qtd = new_qtd
         self.save()
@@ -137,7 +138,7 @@ class Venda(TimeStampedModel):
         return str(self.data)
 
 
-    @property    
+    
     def Total(self):
         qs = self.venda_det.filter(venda=self.pk).values_list('preco','quantidade') or 0
         t = 0 if isinstance(qs, int) else sum(map(lambda q: q[0]*q[1], qs))
@@ -150,7 +151,7 @@ class Venda(TimeStampedModel):
         t = 0 if isinstance(qs, int) else sum(map(lambda q: q[0]*q[1], qs))
         v_final = t-self.desconto
         if self.valor_pago < v_final:
-            return "VALOR ABAIXO DO TOTAL"  #TODO: INSERIR UM POPUP AQUI
+            return "VALOR ABAIXO DO TOTAL"
         else:
             return self.valor_pago-(v_final)
 
@@ -175,7 +176,7 @@ class ItemVenda(TimeStampedModel):
     def subtotal_formated(self):
         return "R$ %s" % number_format(self.sub, 2)
 
-    def save(self):    
+    def save(self, **kwargs):    
         try:
             item_venda = ItemVenda.objects.get(pk=self.pk)
             val = self.quantidade - item_venda.quantidade
@@ -232,7 +233,7 @@ class ItemEntrada(TimeStampedModel):
         return "R$ %s" % number_format(self.sub, 2)
         
         
-    def save(self):
+    def save(self, **kwargs):
         try:
             item_entrada = ItemEntrada.objects.get(pk=self.pk)
             val = self.quantidade - item_entrada.quantidade
