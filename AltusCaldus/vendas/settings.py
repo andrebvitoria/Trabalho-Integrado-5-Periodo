@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'vendas.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-'''
+
 DATABASES = {  
     
     'default': {
@@ -103,7 +103,7 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
+'''
 
 
 # Password validation

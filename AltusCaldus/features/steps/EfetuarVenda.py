@@ -1,45 +1,28 @@
 from behave import *
 from django.contrib.auth.models import User
-
+from loja.models import *
 
 
 @Given('Estou na {url}')
 def given_url(context, url: str):
-    User.objects.create_superuser(username='test', email='foo@bar', password='test')
+    pass
 
-    br = context.browser
-    br.visit(context.base_url + '/admin/')
-    br.fill('username', 'test')
-    br.fill('password', 'test')
-    br.find_by_css('.submit-row input').first.click()
-    br.visit(context.base_url + url)
-
-
-@when('Informo o {cliente}, {vendedor}, {desconto}, {valor_pago}, {url2}')
-def step_impl(context, cliente:str, vendedor: str, desconto: float, valor_pago: float, url2: str):
+@when('informo os produtos e o {cliente}, {vendedor}, {desconto}, {valor_pago}')
+def step_impl(context, cliente:str, vendedor: str, desconto: float, valor_pago: float):
 
 	br = context.browser
+	context.categoria = Categoria.objects.create(descricao='acessorio')
 
-	br.visit(context.base_url + cliente)
-
-	br.fill('nome', 'Fulano Cliente2')
-
-	br.find_by_css('.submit-row input').first.click()
-
-	br.visit(context.base_url + url2)
-
-	br.fill('vendedor', 'test')
-
-	form = { 'desconto': desconto, 'valor_pago': valor_pago}
-
-	br.fill_form(form)
-
-	br.find_by_css('.submit-row input').first.click()
+	context.cliente = Cliente.objects.create(nome=cliente)
+	context.vendedor =  User.objects.create_superuser(username='test', email='foo@bar', password='admin123123')
+	context.venda = Venda.objects.create(cliente=context.cliente, vendedor=context.vendedor, desconto=desconto, valor_pago=valor_pago)
+	context.produto = Produto.objects.create(imagem=None, nome='strep', descricao='ahsuahs', qtd=3, categoria=context.categoria, preco=2.0, valor_custo=0.0)
+	context.item1 = ItemVenda.objects.create(produto=context.produto, venda=context.venda, preco=2.0, quantidade=3)
 
 
 
-@then('Eu sou direcionado para {url_saida}')
-def step_impl(context, url_saida:str):
-    url_atual = context.browser.url
-    assert (url_atual == (context.base_url + url_saida))
+@then('{total} eh o total')
+def step_impl(context, total:str):
+    
+    assert (total == context.venda.Total())
     
