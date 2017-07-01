@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+        {% load static from staticfiles %}
+    <title>Estatística Aulas</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/bootstrap/dist/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/keen-dashboards.css' %}" />
+
+    <!-- Bibliotecas para grafico -->
+    <script type="text/javascript" src="{% static 'js/jscharts.js' %}"></script>
+
+</head>
+<body class="application">
+
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="navbar-brand" href="./">Estatísticas Aula</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="http://localhost:8000/admin/">Administração</a></li>
+                    <li><a href="http://localhost:8000/guarderia/">Guarderia</a></li>
+                    <li><a href="http://localhost:8000/aluguel/">Aluguel</a></li>
+                    <li><a href="http://localhost:8000/aula/">Aula</a></li>
+                    <li><a href="https://github.com/keenlabs/dashboards/tree/gh-pages/layouts/split-columns">Source</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <h2>Filtro</h2>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Buscar</button>
+    </form>
+
+    <h2>Resultado:</h2>
+
+    <div id="chartcontainer">Houve um erro ao gerar o gráfico. Por favor entre em contato com o suporte.</div>
+
+    <script type="text/javascript">
+        var myData = new Array({% for aula in aulas %}['{{aula.nome}}', {{aula.valor}}], {% endfor %});
+
+        var myChart = new JSChart('chartcontainer', 'bar');
+        myChart.setDataArray(myData);
+        myChart.setBackgroundColor('#efe');
+        myChart.setBarColor('#0fffff', 1);
+        myChart.setSize(800, 400);
+        myChart.setTitle('Rendimento por aluno (R$)');
+        myChart.setTitleColor('#000000');
+        myChart.setTitleFontSize(14);
+        myChart.draw();
+    </script>
+
+
+    <hr>
+    <p class="small text-muted">Instituto Federal do Espírito Santo - BSI 2017/1.</p>
+
+<!--
+    <script type="text/javascript" src="{% static 'lib/jquery/dist/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'lib/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'lib/holderjs/holder.js' %}"></script>
+    <script>
+        Holder.add_theme("white", { background:"#fff", foreground:"#a7a7a7", size:10 });
+    </script>
+
+    <script type="text/javascript" src="{% static 'lib/keen-js/dist/keen.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/meta.js' %}"></script>-->
+</body>
+
+
+</html>

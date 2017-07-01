@@ -27,10 +27,10 @@ class Categoria(TimeStampedModel):
 
 
 class Produto(TimeStampedModel):
-    imagem = models.ImageField(upload_to = 'loja/static/imagem/', null=True)
+    imagem = models.ImageField(upload_to = 'static/imagem/', null=True)
     nome = models.CharField('Nome', max_length=200)
     descricao = models.CharField('Descricao', max_length=200, blank = True, null=True)
-    qtd = models.IntegerField(verbose_name='Quantidade', blank=True, null=True)
+    qtd = models.IntegerField(verbose_name='Quantidade', blank=True, null=True, default=0)
     categoria = models.ForeignKey(Categoria, verbose_name='Categoria')
     preco = models.DecimalField(verbose_name ='Preco', max_digits=6, decimal_places=2, default=0.0)
     valor_custo = models.DecimalField('Valor de Custo', max_digits=6, decimal_places=2, default=0.0, null=True)

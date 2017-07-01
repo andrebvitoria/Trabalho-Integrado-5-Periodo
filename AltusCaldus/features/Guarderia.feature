@@ -10,7 +10,7 @@ Feature: Cadastrar Aluno
 
     Examples:
    | url | v1 | v2 | desconto | vTotal |
-   | /admin/servicos/guarderia/add/ | 50 | 30 | 5 | R$ 00,00 |
+   | /admin/servicos/guarderia/add/ | 50 | 30 | 5 | R$ 75,00 |
 
 
 
