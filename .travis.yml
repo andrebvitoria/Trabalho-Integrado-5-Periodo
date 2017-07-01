@@ -10,11 +10,9 @@ addons:
     organization: andrebvitoria-github
     token: 
       secure: "$SONAR_TOKEN"
-      
 branches:
   only:
   - master
-  
 install: 
 - pip install -r requirements.txt
 script:
