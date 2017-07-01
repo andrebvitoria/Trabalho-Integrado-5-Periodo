@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'vendas.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-
+'''
 DATABASES = {  
     
     'default': {
@@ -103,7 +103,9 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-'''
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
@@ -151,6 +153,9 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+ADMIN_SITE_HEADER = "Altus Caldus"
+
 
 # Usado quando for fazer TDD
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'

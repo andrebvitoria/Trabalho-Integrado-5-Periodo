@@ -1,5 +1,5 @@
 dist: trusty
-sudo: required
+sudo: false
 language: python
 python:
 - '3.5'
@@ -8,8 +8,13 @@ jdk:
 addons:
   sonarqube:
     organization: andrebvitoria-github
-    token: "$SONAR_TOKEN"
-install: pip install -r requirements.txt
+    token: 
+      secure: "$SONAR_TOKEN"
+branches:
+  only:
+  - master
+install: 
+- pip install -r requirements.txt
 script:
 - sonar-scanner
 notifications:
