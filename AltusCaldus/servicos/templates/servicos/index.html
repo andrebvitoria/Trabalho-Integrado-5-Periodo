@@ -25,10 +25,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href="http://localhost:8000/admin/">Administração</a></li>
-                    <li><a href="http://localhost:8000/servicos/guarderia/">Guarderia</a></li>
-                    <li><a href="http://localhost:8000/servicos/aluguel/">Aluguel</a></li>
-                    <li><a href="http://localhost:8000/servicos/aula/">Aula</a></li>
+                    <li><a href="{% url 'admin:index' %}">Administração</a></li>
+                    <li><a href="{% url 'guarderia' %}">Guarderia</a></li>
+                    <li><a href="{% url 'aluguel' %}">Aluguel</a></li>
+                    <li><a href="{% url 'aula' %}">Aula</a></li>
                 </ul>
             </div>
         </div>

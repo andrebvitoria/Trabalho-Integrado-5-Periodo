@@ -30,11 +30,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href="http://localhost:8000/admin/">Administração</a></li>
-                    <li><a href="http://localhost:8000/guarderia/">Guarderia</a></li>
-                    <li><a href="http://localhost:8000/aluguel/">Aluguel</a></li>
-                    <li><a href="http://localhost:8000/aula/">Aula</a></li>
-                    <li><a href="https://github.com/keenlabs/dashboards/tree/gh-pages/layouts/split-columns">Source</a></li>
+                    <li><a href="{% url 'admin:index' %}">Administração</a></li>
+                    <li><a href="{% url 'guarderia' %}">Guarderia</a></li>
+                    <li><a href="{% url 'aluguel' %}">Aluguel</a></li>
+                    <li><a href="{% url 'aula' %}">Aula</a></li>
                 </ul>
             </div>
         </div>
