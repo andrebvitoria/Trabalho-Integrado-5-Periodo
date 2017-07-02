@@ -1,4 +1,5 @@
 **TABELA DE INDICES**
+<br>
  NOME | TABELA | COLUNA |
  | --- | --- | --- |
  ID_VENDA | ITEM_VENDA | ID_VENDA |
