@@ -6,7 +6,7 @@
  ID_PRODUTO | ITEM_VENDA | ID_PRODUTO |
  ID_PRODUTO | ITEM_ENTRADA | ID_PRODUTO |
  ID_ENTRADA | ITEM_ENTRADA | ID_ENTRADA |
-
+<br>
  **Índice da tabela ITEM_VENDA:**<br>
   
  *CREATE INDEX id_venda ON item_venda USING
