@@ -18,6 +18,6 @@ Trabalho desenvolvido durante as disciplinas de:
 
         
 Link para documentação [Aqui](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/wiki).<br>
-Para testar o altus caldus, acesse: http://altus-caldus.herokuapp.com/
-Usuário: admin
+Para testar o altus caldus, acesse: http://altus-caldus.herokuapp.com/ <br>
+Usuário: admin <br>
 Senha: admin123123
