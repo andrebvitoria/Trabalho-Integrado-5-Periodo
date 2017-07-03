@@ -65,13 +65,13 @@ NOME|
  ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indices/item_venda_com_indice_grafico.png)
  
  <br>
+ 
 **INDICE ID_PRODUTO**
  
 *CREATE INDEX id_produto ON item_venda USING
 BTREE (id_produto);*
  
 **Hipótese Inicial:** A criação deste índice partiu da ideia que a coluna id_produto sempre será utilizada nas consultas de venda. Sendo que a tabela item_venda armazena os itens que compõem uma venda, a consulta:
-
 
 *select produto.nome, item_venda.quantidade, item_venda.valor_venda
 from item_venda
@@ -80,13 +80,14 @@ where id_produto = 1000;*
  
 será uma consulta realizada constantemente, para identificação da movimentação de um produto ou dos produtos que foram vendidos em um determinado período.
  
-**Desempenho:** O desempenho real não foi o esperado, assim como no exemplo anterior, apesar de estarmos fazendo uma atribuição *inner join produto on id_produto = produto.id_prod* o planejador não utilizou o índice criado. Sendo que, neste caso o planejador também não utilizou quando limitamos a área de busca como, por exemplo: *id_produto <   1000 ou id_produto between 1 and 100*. 
+**Desempenho:** O desempenho real não foi o esperado, assim como no exemplo anterior, apesar de estarmos fazendo uma atribuição *inner join produto on id_produto = produto.id_prod* o planejador não utilizou o índice criado. Sendo que, neste caso o planejador também não utilizou quando limitamos a área de busca como, por exemplo: *id_produto <   1000 ou id_produto between 1 and 100*.<br>
+
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indices/item_venda_com_indice_id_produto_sem_usar.png)
 
-Neste caso, o planejador só utilizou o índice na pesquisa de movimentação de um produto específico como, por exemplo:
+<br>Neste caso, o planejador só utilizou o índice na pesquisa de movimentação de um produto específico como, por exemplo:
 *id_produto =  1000*.  
 
-**comando completo:**
+**comando completo:**<br>
 *select produto.nome, item_venda.quantidade, item_venda.valor_venda
 from item_venda
 inner join produto on id_produto = produto.id_prod
@@ -109,10 +110,12 @@ Considere x = id_produto.
 
 Assim, podemos concluir que o desempenho do índice criado foi bastante satisfatório melhorando consideravelmente o desempenho de uma busca por um produto específico, cabe agora analisar o domínio do problema, para que seja verificado se o ganho de desempenho na busca de itens específicos irá compensar a duplicação de campos na tabela e a perda de performance em comandos de delete, insert e update.
  
-**Grafico sem Indice:**
+**Grafico sem Indice:**<br>
+
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indices/item_venda_sem_indice_id_produto.png)
 
-**Grafico com Indice:**
+**Grafico com Indice:**<br>
+
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indices/item_venda_com_indice_id_produto.png)
 
 
