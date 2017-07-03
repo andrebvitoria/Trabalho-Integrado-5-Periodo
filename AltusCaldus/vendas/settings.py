@@ -157,7 +157,6 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 ADMIN_SITE_HEADER = "Altus Caldus"
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(PROJECT_DIR, 'uploaded')
 
 
 # Usado quando for fazer TDD
