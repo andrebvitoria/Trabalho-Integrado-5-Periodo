@@ -80,7 +80,11 @@ where id_produto = 1000;*
  
 será uma consulta realizada constantemente, para identificação da movimentação de um produto ou dos produtos que foram vendidos em um determinado período.
  
-**Desempenho:** O desempenho real não foi o esperado, assim como no exemplo anterior, apesar de estarmos fazendo uma atribuição *inner join produto on id_produto = produto.id_prod* o planejador não utilizou o índice criado. Sendo que, neste caso o planejador também não utilizou quando limitamos a área de busca como, por exemplo: *id_produto <   1000 ou id_produto between 1 and 100*. O planejado só utilizou o índice criado na pesquisa da movimentação de um produto específico como, por exemplo  *id_produto =  1000*.  
+**Desempenho:** O desempenho real não foi o esperado, assim como no exemplo anterior, apesar de estarmos fazendo uma atribuição *inner join produto on id_produto = produto.id_prod* o planejador não utilizou o índice criado. Sendo que, neste caso o planejador também não utilizou quando limitamos a área de busca como, por exemplo: *id_produto <   1000 ou id_produto between 1 and 100*. 
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indices/item_venda_com_indice_id_produto_sem_usar.png)
+
+Neste caso, o planejador só utilizou o índice na pesquisa de movimentação de um produto específico como, por exemplo:
+*id_produto =  1000*.  
 
 **comando completo:**
 *select produto.nome, item_venda.quantidade, item_venda.valor_venda
@@ -95,7 +99,7 @@ Só foi possível obter um ganho de performance real na criação do índice id_
  
  operações| SEM ÍNDICES| COM ÍNDICES|
  |---|---|---|
- | Hash Join (cost=2729.50..8288.75 rows=127000 width=21)| Hash Join (cost=2729.50..8288.75 rows=127000 width=21)|
+ | | Hash Join (cost=2729.50..8288.75 rows=127000 width=21)| Hash Join (cost=2729.50..8288.75 rows=127000 width=21)|
 X  < 1000 | Hash Join (cost=2729.50..8606.25 rows=127000 width=21) |Hash Join (cost=2729.50..8606.25 rows=127000 width=21)
 X  between 1 and 100 | Hash Join (cost=2729.50..8923.75 rows=127000 width=21) | Hash Join (cost=2729.50..8923.75 rows=127000 width=21)
 X = 1000 | Nested Loop (cost=0.29..3645.84 rows=3 width=21) |Nested Loop (cost=0.70..1128.77 rows=3 width=21)
@@ -105,4 +109,10 @@ Considere x = id_produto.
 
 Assim, podemos concluir que o desempenho do índice criado foi bastante satisfatório melhorando consideravelmente o desempenho de uma busca por um produto específico, cabe agora analisar o domínio do problema, para que seja verificado se o ganho de desempenho na busca de itens específicos irá compensar a duplicação de campos na tabela e a perda de performance em comandos de delete, insert e update.
  
+**Grafico sem Indice:**
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indices/item_venda_sem_indice_id_produto.png)
+
+**Grafico com Indice:**
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indices/item_venda_com_indice_id_produto.png)
+
 
