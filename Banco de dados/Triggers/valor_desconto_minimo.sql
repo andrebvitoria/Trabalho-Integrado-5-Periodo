@@ -1,21 +1,3 @@
-CREATE FUNCTION valor_desconto_minimo_aluguel() RETURNS TRIGGER AS '
-BEGIN
-IF EXISTS (SELECT desconto from aluguel
-	       where desconto < 0)
-THEN
-RAISE EXCEPTION ''Erro: O Valor do desconto deve ser maior que zero '';
-END IF;
-RETURN NULL;
-END
-'
-LANGUAGE plpgsql;
-CREATE TRIGGER checkValorDescontoAluguel
-AFTER INSERT OR UPDATE OF desconto ON aluguel
-FOR EACH ROW
-EXECUTE PROCEDURE valor_desconto_minimo_aluguel();
-
-/* ------------------------- divisão -------------------------  */ 
-
 CREATE FUNCTION valor_desconto_minimo_guarderia() RETURNS TRIGGER AS '
 BEGIN
 IF EXISTS (SELECT desconto from guarderia
@@ -34,9 +16,9 @@ EXECUTE PROCEDURE valor_desconto_minimo_guarderia();
 
 /* ------------------------- divisão -------------------------  */ 
 
-CREATE FUNCTION valor_desconto_minimo_aula() RETURNS TRIGGER AS '
+CREATE FUNCTION valor_desconto_minimo_servico() RETURNS TRIGGER AS '
 BEGIN
-IF EXISTS (SELECT desconto from aula
+IF EXISTS (SELECT desconto from servico
 	       where desconto < 0)
 THEN
 RAISE EXCEPTION ''Erro: O Valor do desconto deve ser maior que zero '';
@@ -45,7 +27,7 @@ RETURN NULL;
 END
 '
 LANGUAGE plpgsql;
-CREATE TRIGGER checkValorDescontoAula
-AFTER INSERT OR UPDATE OF desconto ON aula
+CREATE TRIGGER checkValorDescontoServico
+AFTER INSERT OR UPDATE OF desconto ON servico
 FOR EACH ROW
-EXECUTE PROCEDURE valor_desconto_minimo_aula();
+EXECUTE PROCEDURE valor_desconto_minimo_servico();
