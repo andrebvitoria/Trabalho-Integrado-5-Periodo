@@ -2,46 +2,41 @@
 
 SELECT nome, data, desconto from servico <br>
 inner join aluno on aluno.id_pessoa = servico.id_aluno<br>
-where nome like '%J';<br>
+where data_nascimento between '2018-01-01' and '2011-01-01';<br>
 
- - Busca um serviço pelo nome do aluno;
+ - Busca um serviço pelo data de nascimento, nesse teste quis analisar como as querys se comportariam ao prorcurar um dado que não esta no banco. O Esperado é que na query sem indice o desempenho seja menor, já que ele terá que percorrer todos os registros;
 
 ### Resultatos sem indices
 
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/semIndice1.PNG)
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/semIndiceAnalise1.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/semIndiceData.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/semIndiceDataAnalise.PNG)
 
 ### Resultatos com indices
-Decidemos usar um indice na tabela pessoa na coluna nome. Visualmente não notamos nenhuma diferença na largura das setas, porem é possivel perceber que o tempo de planejamente e execução diminui mesmo sem usar indices.
+Decidemos usar um indice na tabela aluno na coluna data_nascimento. E como era de se esperar o resultado foi superior.
 
-CREATE INDEX nome_aluno ON aluno USING BTREE (nome);<br>
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/comIndice1.PNG)
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/comIndiceAnalise1.PNG)
+CREATE INDEX data_aluno ON aluno USING BTREE (data_nascimento);<br>
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/comIndiceData.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/comIndiceDataAnalise.PNG)
 
-Depois desse resultado decidimos colocar um outro indice, agora na tabela aluno e no campo id_pessoa. Os resultados pioraram em relação a anterior mas os indices não foram usados.
-
-CREATE INDEX id_aluno ON aluno USING BTREE (id_pessoa);<br>
-
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/comIndiceAnalise12.PNG)
 
 ## Segundo teste
 
 select valor, age(data_nascimento) as idade, altura, nome, data from item_aluguel<br>
-inner join servico on servico.id_servico =  item_aluguel.id_servico<br>
+inner join servico on servico.id_servico = item_aluguel.id_servico<br>
 inner join aluno on aluno.id_pessoa = servico.id_aluno<br>
 inner join prancha on prancha.id_prancha = item_aluguel.id_prancha<br>
-where item_aluguel.id_servico < 100000;<br>
+where servico.id_servico between 2000000 and 2001555;<br>
 
 ### Resultatos sem indices
 
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/SemIndice2.PNG)
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/SemIndiceAnalise2.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/comIndiceServico.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/comIndiceServicoAnalise.PNG)
 
 ### Resultatos com indices
 CREATE INDEX id_servico ON servico USING BTREE (id_servico);<br>
 
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/ComIndice2.PNG)
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/ComIndiceAnalise2.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/semIndiceServico.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/SemmIndiceServico.PNG)
 
 
 
