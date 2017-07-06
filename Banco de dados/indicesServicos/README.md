@@ -4,7 +4,7 @@ SELECT nome, data, desconto from servico <br>
 inner join aluno on aluno.id_pessoa = servico.id_aluno<br>
 where data_nascimento between '2018-01-01' and '2011-01-01';<br>
 
- - Busca um serviço pelo data de nascimento, nesse teste quis analisar como as querys se comportariam ao prorcurar um dado que não esta no banco. O Esperado é que na query sem indice o desempenho seja menor, já que ele terá que percorrer todos os registros;
+ - Busca um serviço pelo data de nascimento, nesse teste quisemos analisar como as querys se comportariam ao prorcurar um dado que não esta no banco. O Esperado é que na query sem indice o desempenho seja menor, já que ele terá que percorrer todos os registros;
 
 ### Resultatos sem indices
 
@@ -27,17 +27,18 @@ inner join aluno on aluno.id_pessoa = servico.id_aluno<br>
 inner join prancha on prancha.id_prancha = item_aluguel.id_prancha<br>
 where servico.id_servico between 2000000 and 2001555;<br>
 
+ - Essa query permite que analisemos a idade do aluno com a altura da prancha alugada, nesse teste quisemos analisar como uma busca pesada pode afetar o custo nas demais. O esperado é que na query sem indice o custo se acumule no processo e na com indice que é esperado que essa diminuição no custo inicial diminua o custo do resto do processo.
+
 ### Resultatos sem indices
-
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/comIndiceServico.PNG)
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/comIndiceServicoAnalise.PNG)
-
-### Resultatos com indices
-CREATE INDEX id_servico ON servico USING BTREE (id_servico);<br>
 
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/semIndiceServico.PNG)
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/SemmIndiceServico.PNG)
 
+### Resultatos com indices
+CREATE INDEX id_servico ON servico USING BTREE (id_servico);<br>
+
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/comIndiceServico.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/comIndiceServicoAnalise.PNG)
 
 
 ## Terceiro teste
