@@ -84,7 +84,7 @@
  
  `SELECT * FROM DADOS_GUARDERIA;                                                               `
     
-![Dados Guarderia](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/view_dados_guarderia.PNG)<br>
+![Dados Guarderia](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/view_dados_servico.PNG)<br>
 
 
 #### Visão 2
@@ -94,6 +94,14 @@
  `SELECT * FROM DADOS_CAMISA;                                                                 `
     
 ![Dados Camisa](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/loja/view_dados_camisa.png)<br>
+
+#### Visão 3
+ - Essa view serve para visualizar os dados de contato de pessoa <br>
+ - View:  [view_contato_pessoa](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/Views/view_contato_pessoa.sql)<br>
+ 
+ `SELECT * FROM view_contato_aluno;                                                                 `
+    
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/view_contato.PNG)<br>
 
 
 
