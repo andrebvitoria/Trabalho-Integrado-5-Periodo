@@ -41,7 +41,7 @@ where item_aluguel.id_servico > 100000;<br>
 CREATE INDEX id_aluno ON aluno USING BTREE (id_pessoa);<br>
 CREATE INDEX id_servico ON servico USING BTREE (id_servico);<br>
 
-![https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/comIndiceAnalise2.PNG]
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/comIndiceAnalise2.PNG)
 
 
 ## Terceiro teste
@@ -53,7 +53,7 @@ where item.id_item > 1000;<br>
 
 ### Resultatos sem indices
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/semIndice3.PNG)
-![https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/semIndiceAnalise3.PNG]
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/semIndiceAnalise3.PNG)
 
 ### Resultatos com indices
 CREATE INDEX id_item2 ON item_guarderia USING BTREE (id_item);<br>
