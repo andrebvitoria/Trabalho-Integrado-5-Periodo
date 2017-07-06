@@ -103,10 +103,10 @@
  - Essa função tem o objetivo de calcular o valor total de um seriço
  - Função: [calcula_valor_servico](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/Functions/calcula_valor_servico.sql)<br>
  
-`select *from item_aluguel where id_servico = 2000001 ;`
+`select *from item_aluguel where id_servico = 2000001 ;`<br>
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/fun%C3%A7%C3%A3o/calcula_total1.PNG)<br>
 
-`select soma_item_aluguel (2000001);;`
+`select soma_item_aluguel (2000001);`<br>
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/fun%C3%A7%C3%A3o/calcula_total2.PNG)<br>
 
 
@@ -114,10 +114,10 @@
  - Essa função tem o objetivo de calcular quantos dias faltam para uma guarderia expirar.
  - Função: [calcula_validade_guarderia](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/Functions/calcula_validade_guarderia.sql)<br>
  
-`select *from guarderia where id_servico = 1000001 ;`
+`select *from guarderia where id_servico = 1000001 ;`<br>
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/fun%C3%A7%C3%A3o/vencimento_guarderia1.PNG)<br>
 
-`select validade_guarderia(1000001);`
+`select validade_guarderia(1000001);` <br>
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/fun%C3%A7%C3%A3o/vencimento_guarderia2.PNG)<br>
 
 #### Trigger 1
