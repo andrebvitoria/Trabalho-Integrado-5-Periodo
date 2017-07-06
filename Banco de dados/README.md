@@ -2,49 +2,58 @@
  
  
      SELECT * FROM PESSOA LIMIT 10;
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_pessoa.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/pessoa.PNG)
 
     SELECT * FROM ALUNO LIMIT 10;
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_aluno.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/aluno.PNG)
 
     SELECT * FROM PROFESSOR LIMIT 10;
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_professor.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/professor.PNG)
 
     SELECT * FROM VENDEDOR LIMIT 10;
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_vendedor.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/vendedor.PNG)
 
     SELECT * FROM SERVICO LIMIT 10;
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_servico.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/servico.PNG)
 
     SELECT * FROM GUARDERIA LIMIT 10;
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_guarderia.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/guarderia.PNG)
 
-    SELECT * FROM ALUGUEL LIMIT 10;
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_aluguel.PNG)
+    SELECT * FROM ITEM_GUARDERIA LIMIT 10;
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/item_guarderia.PNG)
 
-    SELECT * FROM AULA LIMIT 10;
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_aula.PNG)
+    SELECT * FROM ITEM_ALUGUEL LIMIT 10;
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/item_aluguel.PNG)
 
-    SELECT * FROM DETALHE_GUARDERIA LIMIT 10;
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_detalhe_guarderia.PNG)
-
-    SELECT * FROM DETALHE_ALUGUEL LIMIT 10;
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_detalhe_aluguel.PNG)
-
-    SELECT * FROM DETALHE_AULA LIMIT 10;
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_detalhe_aula.PNG)
+    SELECT * FROM ITEM_AULA LIMIT 10;
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/item_aula.PNG)
 
     SELECT * FROM ITEM LIMIT 10;
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_item.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/item.PNG)
 
     SELECT * FROM PRANCHA LIMIT 10;
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_prancha.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/prancha.PNG)
 
     SELECT * FROM AULA_MARCADA LIMIT 10;
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_aula_marcada.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/aula_marcada.PNG)
 
     SELECT * FROM TIPO_PRANCHA LIMIT 10;
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/contato.PNG)
+
+    SELECT * FROM TIPO_CONTATO LIMIT 10;
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/select_tipo_prancha.PNG)
+
+    SELECT * FROM CONTATO_ALUNO LIMIT 10;
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/contato_aluno.PNG)
+
+    SELECT * FROM CONTATO_VENDEDOR LIMIT 10;
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/contato_vendedor.PNG)
+
+    SELECT * FROM CONTATO_PROFESSOR LIMIT 10;
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/contato_professor.PNG)
+
+    SELECT * FROM TIPO_PRANCHA LIMIT 10;
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/imagens/Servi%C3%A7os/select/tipo_prancha.PNG)
 
 
     SELECT * FROM TIPO_CAMISA LIMIT 10;
