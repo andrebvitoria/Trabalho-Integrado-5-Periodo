@@ -5,15 +5,13 @@
 1° Execute os 3 códigos de Geração de dados.<br><br>
 
 2º Crie um banco e execute o script de criação das tabelas.<br>
-	ATENÇÃO: É recomendado o uso de um banco limpo, sem nenhum dado dentro das tabelas,<br>
-		 pois pode interferir no resultado da inserção.<br>
+* ATENÇÃO: É recomendado o uso de um banco limpo, sem nenhum dado dentro das tabelas, pois pode interferir no resultado da inserção. <br>
 
 3° No pentaho coloque os respectivos csv's em suas entradas e execute os processos em 4 etapas:<br>
-	1° Execute a 1° fileira ela não possui dependências.<br>
-	2° Execute a 2° fileira ela depende da 1°.<br>
-	3° Execute a 3° fileira ela depende da 1° e da 2°.<br>
-	4º Execute a Ultima fileira, ela depende das anteriores. <br>
-
+* 1° Execute a 1° fileira ela não possui dependências.<br>
+* 2° Execute a 2° fileira ela depende da 1°.<br>
+* 3° Execute a 3° fileira ela depende da 1° e da 2°.<br>
+* 4º Execute a Ultima fileira, ela depende das anteriores. <br>
 
 
 ### Dados Loja
