@@ -12,13 +12,13 @@ where nome like '%J';<br>
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/semIndiceAnalise1.PNG)
 
 ### Resultatos com indices
-Decidemos usar um indice na tabela pessoa na coluna nome. Visualmente não notamos nenhuma diferença na largura das setas, porem é possivel perceber que o tempo de planejamente e execução diminui.
+Decidemos usar um indice na tabela pessoa na coluna nome. Visualmente não notamos nenhuma diferença na largura das setas, porem é possivel perceber que o tempo de planejamente e execução diminui mesmo sem usar indices.
 
 CREATE INDEX nome_aluno ON aluno USING BTREE (nome);<br>
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/comIndice1.PNG)
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/comIndiceAnalise1.PNG)
 
-Depois desse resultado decidimos colocar um outro indice, agora na tabela aluno e no campo id_pessoa. Os resultados pioraram, ou seja, nem sempre aplicar indices é vantajoso. Segundo o professor é preciso saber exatamento onde aplicar um indice já que ele pode ser bem custoso.
+Depois desse resultado decidimos colocar um outro indice, agora na tabela aluno e no campo id_pessoa. Os resultados pioraram em relação a anterior mas os indices não foram usados.
 
 CREATE INDEX id_aluno ON aluno USING BTREE (id_pessoa);<br>
 
