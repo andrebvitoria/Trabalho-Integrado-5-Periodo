@@ -53,7 +53,7 @@ inner join item on item.id_item = item_guarderia.id_item<br>
 where item.id_item < 1000;<br>
 
 ### Resultatos sem indices
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/SemIndice3.PNG.PNG)
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/SemIndice3.PNG)
 ![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/indicesServicos/imagens/SemIndiceAnalise3.PNG)
 
 ### Resultatos com indices
