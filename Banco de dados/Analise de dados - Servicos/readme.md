@@ -3,9 +3,7 @@
 
 
 ### 1.1 Origem dos Dados
-Os dados usados nessa analise foram gerados aleatóriamente usando a biblioteca Faker da Linguagem de Programação Python. <br>
-Fora iserido lotes de 100.000 itens em cada tabela, com exceção as realcionadas diretamente a tabela serviço, nestas fora inserido lotes de 500.000. <br>
-Como o subsistema de Serviços possui 3 Serviços que compartilham uma tabela no banco, fora inserido nessa tabela 500.000 itens para cada serviço. Totalizando 1.500.000 de linhas na tabela servico.
+Os dados usados nessa analise foram gerados aleatóriamente usando a biblioteca Faker da Linguagem de Programação Python. Fora iserido lotes de 100.000 itens em cada tabela, com exceção as realcionadas diretamente a tabela serviço, nestas fora inserido lotes de 500.000. Como o subsistema de Serviços possui 3 Serviços que compartilham uma tabela no banco, fora inserido nessa tabela 500.000 itens para cada serviço. Totalizando 1.500.000 de linhas na tabela servico.
 
 ### 1.2  Algoritmos Utilizados
 Para analise do banco de dados foi usado o Orange Data Mining. Foram testado alguns recursos de analise, mas dado que os dados simulados ficaram com uma distribuição homogenea o algoritmo que obtera resultados significativos foi o Sieve Diagram. <br>
