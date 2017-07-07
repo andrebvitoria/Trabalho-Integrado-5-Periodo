@@ -37,4 +37,5 @@ Nesse caso foi possível observar determinados comportamentos. Por exemplo: <br>
  * Alunos entre 11.5 e 23.5 tendem a alugar mais Gun e menos Mini Malibu e Shortboard.
  * Alunos com menos de 11.5 alugam mais Shortboard e Performance e menos Gun e Evolution.
 
+# 2 Considerações Finais
 Dado a natureza dos dados, essas informações podem ser consideradas descartáveis, mas em uma situação real, a importância de ter esse tipo de informação é muito alta, visto que elas podem dar base para a tomada de decisão que podem influenciar todo um negócio. <br>
