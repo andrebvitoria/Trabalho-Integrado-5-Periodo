@@ -24,14 +24,14 @@ Na maioria das analises realizadas os resultados obtidos seguiram o padrão acim
 Mas em casos reais podem indicar uma propensão que se estimulada pode gerar resultados positivos.
 A imagem abaixo apresenta a relação entre a altura das pranchas e o genero que mais aluga cada altura.
 
-[IMAGEM ALTURA PRANCHA]
+![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/Analise%20de%20dados%20-%20Servicos/Servicos/Prancha%20mais%20alugada.png)
 
 Em situações onde a variação dos dados é maior a utilização de ferramentas que apontam determinado comportamento e preferecias dos clientes se faz proveitosa por mostrar informações que podem ser usadas como base para investimento de recursos. <br>
 
 Em uma segunda analise foi feita uma filtragem incial e uma preparação dos dados. Visto que o software usado teve problemas em reconhecer datas. Dificultando a analise.
 A Imagem a seguir apresenta a relação entre faixa etária e os tipos de pranchas mais alugados.
 
-[IMAGEM PRANCHA IDADE]
+![](https://raw.githubusercontent.com/andrebvitoria/Trabalho-Integrado-5-Periodo/master/Banco%20de%20dados/Analise%20de%20dados%20-%20Servicos/Servicos/Idade%20Aluno%20x%20Prancha%20Alugada.png)
 
 Nesse caso foi possivel observar determinados comportamentos. Por exemplo: <br>
  * Alunos com 35 anos ou mais quase não alugam pranchas Longboard, tendo uma maior tendencia a alugar Performance. 
@@ -41,5 +41,3 @@ Nesse caso foi possivel observar determinados comportamentos. Por exemplo: <br>
 
 Dado a natureza dos dados, essas informações podem ser consideradas descartaveis, mas em uma situação real, a importancia de ter esse tipo de informação é muito alta, visto que elas podem dar base para a tomada de decisão. <br>
 
-
-![](https://github.com/andrebvitoria/Trabalho-Integrado-5-Periodo/blob/master/Banco%20de%20dados/analise-de-dados-orange/imagens/desconto-uniforme.png)
